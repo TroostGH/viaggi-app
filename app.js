@@ -297,6 +297,13 @@ function openTripModal(id) {
       <h3><span>Documenti</span></h3>
       ${docsHtml}
     </div>
+
+    <div class="trip-section trip-section-danger">
+      <button class="btn-danger" id="btn-delete-trip">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6h14zM10 11v6M14 11v6"/></svg>
+        Elimina viaggio
+      </button>
+    </div>
   `;
 
   document.getElementById('trip-modal').classList.remove('hidden');
@@ -328,6 +335,22 @@ function openTripModal(id) {
       openTripModal(t.id);
       renderStats();
     });
+  });
+
+  // Wire delete trip
+  document.getElementById('btn-delete-trip').addEventListener('click', async () => {
+    const ok = confirm(`Vuoi davvero eliminare il viaggio "${t.title}"?\n\nQuesta azione non si può annullare. Verranno persi: dati, spese, note e link ai documenti.`);
+    if (!ok) return;
+    try {
+      await db.deleteTrip(t.id);
+      state.trips = state.trips.filter(x => x.id !== t.id);
+      closeTripModal();
+      renderList();
+      renderStats();
+      updateGlobePoints();
+    } catch (e) {
+      alert('Errore nell\'eliminazione: ' + (e?.message || e));
+    }
   });
 }
 
