@@ -30,6 +30,7 @@ input, textarea, select { font-family: inherit; }
 }
 .topbar-left { display: flex; align-items: center; gap: 24px; }
 .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; letter-spacing: -0.02em; }
+.logo-img { object-fit: contain; flex-shrink: 0; }
 .stats { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text-secondary); }
 .stat-sep { color: var(--text-muted); }
 .topbar-right { display: flex; align-items: center; gap: 12px; }
@@ -134,10 +135,13 @@ input, textarea, select { font-family: inherit; }
 
 /* Documents */
 .doc-list { display: flex; flex-direction: column; gap: 8px; }
-.doc-item { display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: var(--bg-elev); border-radius: 8px; cursor: pointer; transition: background 0.15s; text-decoration: none; color: inherit; }
+.doc-item-row { display: flex; align-items: center; gap: 6px; }
+.doc-item { flex: 1; display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: var(--bg-elev); border-radius: 8px; cursor: pointer; transition: background 0.15s; text-decoration: none; color: inherit; min-width: 0; }
 .doc-item:hover { background: #1f2f47; }
-.doc-icon { width: 32px; height: 32px; background: rgba(239,68,68,0.15); color: #f87171; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; }
+.doc-icon { width: 32px; height: 32px; background: rgba(239,68,68,0.15); color: #f87171; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; }
 .doc-name { flex: 1; font-size: 14px; word-break: break-all; }
+.btn-add-doc { margin-top: 10px; background: transparent; color: var(--accent); border: 1px dashed rgba(59,130,246,0.4); padding: 10px 14px; border-radius: 8px; font-size: 13px; font-weight: 500; width: 100%; text-align: center; transition: all 0.15s; cursor: pointer; }
+.btn-add-doc:hover { background: rgba(59,130,246,0.08); border-color: var(--accent); }
 
 /* ============== FORM ============== */
 .modal-form { padding: 28px 32px; }

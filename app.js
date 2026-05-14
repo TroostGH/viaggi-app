@@ -243,17 +243,34 @@ function openTripModal(id) {
     </div>
   `).join('') : `<p class="expenses-empty">Nessuna nota.</p>`;
 
-  const docsHtml = (t.pdf_filenames && t.pdf_filenames.length) ? `
-    <div class="doc-list">
-      ${t.pdf_filenames.map(fn => {
-        const safe = fn.replace(/[^\w.-]/g, '_');
-        return `<a class="doc-item" href="pdfs/${t.id}__${safe}" target="_blank" rel="noopener">
-          <div class="doc-icon">PDF</div>
-          <div class="doc-name">${escapeHtml(fn)}</div>
-        </a>`;
-      }).join('')}
-    </div>
-  ` : `<p class="expenses-empty">Nessun documento caricato.</p>`;
+  // Documenti: combina PDF locali (nel repo) + link esterni (salvati su Firestore)
+  const localDocs = (t.pdf_filenames || []).map(fn => {
+    const safe = fn.replace(/[^\w.-]/g, '_');
+    return { kind: 'local', name: fn, url: `pdfs/${t.id}__${safe}` };
+  });
+  const externalDocs = (t.documents || []).map((d, idx) => ({
+    kind: 'external', name: d.file_name || 'Documento', url: d.public_url || '#', idx,
+  }));
+  const allDocs = [...localDocs, ...externalDocs];
+
+  const docsListHtml = allDocs.length
+    ? `<div class="doc-list">
+        ${allDocs.map(d => `
+          <div class="doc-item-row">
+            <a class="doc-item" href="${escapeHtml(d.url)}" target="_blank" rel="noopener">
+              <div class="doc-icon">${d.kind === 'external' ? '🔗' : 'PDF'}</div>
+              <div class="doc-name">${escapeHtml(d.name)}</div>
+            </a>
+            ${d.kind === 'external' ? `<button class="btn-delete" data-action="del-doc" data-idx="${d.idx}" title="Rimuovi link">🗑</button>` : ''}
+          </div>
+        `).join('')}
+      </div>`
+    : `<p class="expenses-empty">Nessun documento.</p>`;
+
+  const docsHtml = `
+    ${docsListHtml}
+    <button class="btn-add-doc" id="btn-add-doc-link">+ Aggiungi link documento</button>
+  `;
 
   content.innerHTML = `
     <div class="trip-hero">
@@ -334,6 +351,44 @@ function openTripModal(id) {
       await db.saveTrip(t);
       openTripModal(t.id);
       renderStats();
+    });
+  });
+
+  // Wire "Aggiungi link documento"
+  const addDocBtn = document.getElementById('btn-add-doc-link');
+  if (addDocBtn) {
+    addDocBtn.addEventListener('click', async () => {
+      const url = (prompt('Incolla il link al documento\n(Google Drive, iCloud, Dropbox, OneDrive, qualsiasi URL pubblico):') || '').trim();
+      if (!url) return;
+      if (!/^https?:\/\//i.test(url)) { alert('L\'URL deve iniziare con http:// o https://'); return; }
+      const defaultName = decodeURIComponent(url.split('/').pop() || 'Documento').split('?')[0] || 'Documento';
+      const name = (prompt('Nome del documento:', defaultName) || '').trim();
+      if (!name) return;
+      try {
+        await db.addDocumentLink(t.id, name, url);
+        t.documents = t.documents || [];
+        t.documents.push({ file_name: name, public_url: url, external: true });
+        openTripModal(t.id);
+      } catch (e) {
+        alert('Errore nel salvare il link: ' + (e?.message || e));
+      }
+    });
+  }
+
+  // Wire delete external doc link
+  content.querySelectorAll('[data-action="del-doc"]').forEach(btn => {
+    btn.addEventListener('click', async (ev) => {
+      ev.preventDefault();
+      ev.stopPropagation();
+      const idx = parseInt(btn.dataset.idx);
+      if (!confirm('Rimuovere questo link dal viaggio?')) return;
+      t.documents.splice(idx, 1);
+      try {
+        await db.saveTrip(t);
+        openTripModal(t.id);
+      } catch (e) {
+        alert('Errore: ' + (e?.message || e));
+      }
     });
   });
 
