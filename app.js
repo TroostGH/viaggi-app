@@ -233,12 +233,22 @@ function openTripModal(id) {
     </tr>
   `).join('');
 
-  const notesHtml = (t.notes && t.notes.length) ? t.notes.map(n => `
-    <div class="note-item">
-      <h4>${escapeHtml(n.heading)}</h4>
-      ${n.body ? `<p>${escapeHtml(n.body)}</p>` : '<p style="color:var(--text-muted);font-style:italic">(senza dettagli)</p>'}
+  // Editor delle note: heading + textarea per ciascuna nota, con autosave on blur
+  const notesList = (t.notes && t.notes.length) ? t.notes : [];
+  const notesHtml = `
+    <div class="notes-editor" id="notes-editor">
+      ${notesList.map((n, idx) => `
+        <div class="note-edit" data-note-idx="${idx}">
+          <div class="note-edit-head">
+            <input type="text" class="note-heading-input" data-field="heading" data-idx="${idx}" value="${escapeHtml(n.heading || '')}" placeholder="Titolo (es. Visto)">
+            <button class="btn-delete note-del-btn" data-idx="${idx}" title="Elimina nota">🗑</button>
+          </div>
+          <textarea class="note-body-input" data-field="body" data-idx="${idx}" rows="3" placeholder="Scrivi qui le tue note...">${escapeHtml(n.body || '')}</textarea>
+        </div>
+      `).join('')}
     </div>
-  `).join('') : `<p class="expenses-empty">Nessuna nota.</p>`;
+    <button class="btn-add-doc" id="btn-add-note">+ Aggiungi nota</button>
+  `;
 
   // Documenti: combina PDF locali (nel repo) + link esterni (salvati su Firestore)
   const localDocs = (t.pdf_filenames || []).map(fn => {
@@ -350,6 +360,50 @@ function openTripModal(id) {
       renderStats();
     });
   });
+
+  // Wire note editor: autosave on blur su heading e body
+  content.querySelectorAll('#notes-editor .note-heading-input, #notes-editor .note-body-input').forEach(el => {
+    el.addEventListener('blur', async () => {
+      const idx = parseInt(el.dataset.idx);
+      const field = el.dataset.field;
+      if (!t.notes || !t.notes[idx]) return;
+      const newVal = el.value;
+      if (t.notes[idx][field] === newVal) return; // nessun cambio
+      t.notes[idx][field] = newVal;
+      try { await db.saveTrip(t); } catch (e) { alert('Errore nel salvare la nota: ' + (e?.message || e)); }
+    });
+  });
+
+  // Elimina singola nota
+  content.querySelectorAll('.note-del-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const idx = parseInt(btn.dataset.idx);
+      if (!confirm('Eliminare questa nota?')) return;
+      t.notes.splice(idx, 1);
+      try {
+        await db.saveTrip(t);
+        openTripModal(t.id);
+      } catch (e) { alert('Errore: ' + (e?.message || e)); }
+    });
+  });
+
+  // Aggiungi nota
+  const addNoteBtn = document.getElementById('btn-add-note');
+  if (addNoteBtn) {
+    addNoteBtn.addEventListener('click', async () => {
+      t.notes = t.notes || [];
+      t.notes.push({ heading: 'Nota', body: '' });
+      try {
+        await db.saveTrip(t);
+        openTripModal(t.id);
+        // focus sul body della nuova nota
+        setTimeout(() => {
+          const all = document.querySelectorAll('#notes-editor .note-body-input');
+          if (all.length) all[all.length - 1].focus();
+        }, 50);
+      } catch (e) { alert('Errore: ' + (e?.message || e)); }
+    });
+  }
 
   // Wire "Aggiungi link documento"
   const addDocBtn = document.getElementById('btn-add-doc-link');

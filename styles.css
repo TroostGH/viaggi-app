@@ -128,10 +128,17 @@ input, textarea, select { font-family: inherit; }
 .btn-delete { background: transparent; color: var(--text-muted); font-size: 18px; padding: 4px 8px; border-radius: 6px; transition: all 0.15s; }
 .btn-delete:hover { background: rgba(239,68,68,0.15); color: #f87171; }
 
-/* Notes */
-.note-item { background: var(--bg-elev); border-radius: 8px; padding: 12px 14px; margin-bottom: 8px; }
-.note-item h4 { font-size: 13px; font-weight: 600; margin-bottom: 6px; color: var(--text-primary); }
-.note-item p { font-size: 14px; color: var(--text-secondary); line-height: 1.5; white-space: pre-wrap; }
+/* Notes editor */
+.notes-editor { display: flex; flex-direction: column; gap: 10px; }
+.note-edit { background: var(--bg-elev); border-radius: 8px; padding: 10px 12px; border: 1px solid var(--border); }
+.note-edit-head { display: flex; gap: 8px; align-items: center; margin-bottom: 6px; }
+.note-heading-input { flex: 1; background: transparent; border: none; padding: 4px 0; color: var(--text-primary); font-size: 14px; font-weight: 600; outline: none; }
+.note-heading-input:focus { color: var(--accent); }
+.note-heading-input::placeholder { color: var(--text-muted); font-weight: 500; }
+.note-body-input { width: 100%; background: transparent; border: none; resize: vertical; min-height: 60px; color: var(--text-secondary); font-size: 14px; line-height: 1.5; outline: none; font-family: inherit; padding: 4px 0; }
+.note-body-input:focus { color: var(--text-primary); }
+.note-body-input::placeholder { color: var(--text-muted); font-style: italic; }
+.note-del-btn { flex-shrink: 0; }
 
 /* Documents */
 .doc-list { display: flex; flex-direction: column; gap: 8px; }
