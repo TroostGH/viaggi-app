@@ -80,23 +80,20 @@ function initGlobe() {
     .atmosphereColor('#7baaff')
     .atmosphereAltitude(0.18);
 
-  // Auto-rotate slowly
+  // Vista iniziale: Europa centrata, zoom medio
+  globe.pointOfView({ lat: 48, lng: 12, altitude: 1.85 }, 0);
+
+  // Controls: damping abilitato, niente auto-rotate (l'utente vede subito l'Europa ferma)
   const controls = globe.controls();
-  controls.autoRotate = true;
-  controls.autoRotateSpeed = 0.35;
+  controls.autoRotate = false;
   controls.enableDamping = true;
   controls.dampingFactor = 0.08;
 
-  // Stop rotation on user interaction
-  let userInteracted = false;
+  // Nascondi l'hint dopo la prima interazione
   ['mousedown','touchstart','wheel'].forEach(ev => {
     el.addEventListener(ev, () => {
-      if (!userInteracted) {
-        userInteracted = true;
-        controls.autoRotate = false;
-        document.getElementById('globe-hint').classList.add('hidden');
-      }
-    }, { passive: true });
+      document.getElementById('globe-hint').classList.add('hidden');
+    }, { passive: true, once: true });
   });
 
   // Hide hint after 5s anyway
