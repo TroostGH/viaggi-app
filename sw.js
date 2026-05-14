@@ -1,5 +1,5 @@
 /* Simple service worker for offline support */
-const CACHE = 'viaggi-v3';
+const CACHE = 'viaggi-v4';
 const ASSETS = [
   './',
   './index.html',
