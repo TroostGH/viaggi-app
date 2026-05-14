@@ -1,0 +1,2368 @@
+{
+  "trips": [
+    {
+      "id": "tarifa-11-18-luglio-2026",
+      "title": "Tarifa - 11/18 Luglio 2026",
+      "folder": "Tarifa - 11 18 Luglio 2026",
+      "location_name": "Tarifa",
+      "geocoded_query": "Tarifa, Cadiz, Spain",
+      "lat": 36.0143,
+      "lng": -5.6043,
+      "country": "Spagna",
+      "country_code": "ES",
+      "start_date": "2026-07-11",
+      "end_date": "2026-07-18",
+      "category": "future",
+      "expenses": [
+        {
+          "name": "Tribala",
+          "total_eur": 1150.0,
+          "days": 8
+        },
+        {
+          "name": "Spese",
+          "total_eur": null,
+          "days": 8
+        }
+      ],
+      "expenses_total_eur": 1150.0,
+      "notes": [],
+      "pdf_filenames": []
+    },
+    {
+      "id": "mauritius-3-21-settembre-2026",
+      "title": "Mauritius 3/21 Settembre 2026",
+      "folder": "Mauritius 3 21 Settembre 2026",
+      "location_name": "Mauritius",
+      "geocoded_query": "Port Louis, Mauritius",
+      "lat": -20.1644,
+      "lng": 57.5012,
+      "country": "Mauritius",
+      "country_code": "MU",
+      "start_date": "2026-09-03",
+      "end_date": "2026-09-21",
+      "category": "future",
+      "expenses": [
+        {
+          "name": "Volo Andata 1",
+          "total_eur": 193.46,
+          "days": 19
+        },
+        {
+          "name": "Appartamento",
+          "total_eur": 707.38,
+          "days": 19
+        },
+        {
+          "name": "Spese",
+          "total_eur": null,
+          "days": 19
+        },
+        {
+          "name": "Volo Andata 2",
+          "total_eur": 141.48,
+          "days": 19
+        },
+        {
+          "name": "Volo Ritorno",
+          "total_eur": 220.83,
+          "days": 19
+        },
+        {
+          "name": "Parcheggio",
+          "total_eur": 102.97,
+          "days": 19
+        }
+      ],
+      "expenses_total_eur": 1366.12,
+      "notes": [],
+      "pdf_filenames": []
+    },
+    {
+      "id": "tarifa-11-18-novembre-2026",
+      "title": "Tarifa - 11/18 Novembre 2026",
+      "folder": "Tarifa - 11 18 Novembre 2026",
+      "location_name": "Tarifa",
+      "geocoded_query": "Tarifa, Cadiz, Spain",
+      "lat": 36.0143,
+      "lng": -5.6043,
+      "country": "Spagna",
+      "country_code": "ES",
+      "start_date": "2026-11-11",
+      "end_date": "2026-11-18",
+      "category": "future",
+      "expenses": [
+        {
+          "name": "Volo",
+          "total_eur": 161.46,
+          "days": 8
+        },
+        {
+          "name": "Hotel",
+          "total_eur": 195.5,
+          "days": 8
+        },
+        {
+          "name": "Spese",
+          "total_eur": null,
+          "days": 8
+        }
+      ],
+      "expenses_total_eur": 356.96,
+      "notes": [],
+      "pdf_filenames": []
+    },
+    {
+      "id": "firenze-capodanno-2021",
+      "title": "Firenze - Capodanno 2021",
+      "folder": "Firenze - Capodanno 2021",
+      "location_name": "Firenze",
+      "geocoded_query": "Florence, Italy",
+      "lat": 43.7696,
+      "lng": 11.2558,
+      "country": "Italia",
+      "country_code": "IT",
+      "start_date": "2020-12-31",
+      "end_date": "2021-01-01",
+      "category": "past",
+      "expenses": [
+        {
+          "name": "Cena",
+          "total_eur": 436.0,
+          "days": 2
+        },
+        {
+          "name": "Sbriciolona",
+          "total_eur": 3.7,
+          "days": 2
+        },
+        {
+          "name": "Panettone",
+          "total_eur": 26.0,
+          "days": 2
+        },
+        {
+          "name": "Salumeria",
+          "total_eur": 15.9,
+          "days": 2
+        },
+        {
+          "name": "Spesa",
+          "total_eur": 67.05,
+          "days": 2
+        },
+        {
+          "name": "Appartamento",
+          "total_eur": 813.1,
+          "days": 2
+        },
+        {
+          "name": "Treni",
+          "total_eur": 362.4,
+          "days": 2
+        },
+        {
+          "name": "Musei",
+          "total_eur": 136.0,
+          "days": 2
+        },
+        {
+          "name": "Tassa Soggiorno",
+          "total_eur": 64.0,
+          "days": 2
+        },
+        {
+          "name": "Museo 1 Gennaio",
+          "total_eur": 64.0,
+          "days": 2
+        }
+      ],
+      "expenses_total_eur": 1988.15,
+      "notes": [],
+      "pdf_filenames": [
+        "Biglietti_Museo_01-01-22.pdf",
+        "FIF8VB-ba06d7be-ad77-a32e-c138-a079b669d488.pdf"
+      ]
+    },
+    {
+      "id": "puglia-07-21-agosto-2021",
+      "title": "Puglia - 07/21 Agosto 2021",
+      "folder": "Puglia - 07 21 Agosto 2021",
+      "location_name": "Puglia",
+      "geocoded_query": "Polignano a Mare, Puglia, Italia",
+      "lat": 40.9961,
+      "lng": 17.2186,
+      "country": "Italia",
+      "country_code": "IT",
+      "start_date": "2021-08-07",
+      "end_date": "2021-08-21",
+      "category": "past",
+      "expenses": [
+        {
+          "name": "Carburante",
+          "total_eur": 381.88,
+          "days": 15
+        },
+        {
+          "name": "Pedaggio",
+          "total_eur": 2.4,
+          "days": 15
+        },
+        {
+          "name": "Pedaggio Ritorno",
+          "total_eur": 64.8,
+          "days": 15
+        },
+        {
+          "name": "Pranzo",
+          "total_eur": 40.0,
+          "days": 15
+        },
+        {
+          "name": "Parcheggio Grotte",
+          "total_eur": 4.0,
+          "days": 15
+        },
+        {
+          "name": "Parcheggio Martina Franca",
+          "total_eur": 6.07,
+          "days": 15
+        },
+        {
+          "name": "Cena Martina Franca",
+          "total_eur": 225.0,
+          "days": 15
+        },
+        {
+          "name": "Pranzo Alberobello",
+          "total_eur": 92.0,
+          "days": 15
+        },
+        {
+          "name": "Grotte di Castellana",
+          "total_eur": 105.0,
+          "days": 15
+        },
+        {
+          "name": "Colazione",
+          "total_eur": 28.8,
+          "days": 15
+        },
+        {
+          "name": "Cena Jamantè",
+          "total_eur": 267.0,
+          "days": 15
+        },
+        {
+          "name": "Spesa",
+          "total_eur": 46.96,
+          "days": 15
+        },
+        {
+          "name": "Cena Locorotondo",
+          "total_eur": 177.0,
+          "days": 15
+        },
+        {
+          "name": "Aperitivo",
+          "total_eur": 21.0,
+          "days": 15
+        },
+        {
+          "name": "Cena Ostuni",
+          "total_eur": 167.0,
+          "days": 15
+        },
+        {
+          "name": "Spesa pranzo",
+          "total_eur": 15.1,
+          "days": 15
+        },
+        {
+          "name": "Hotel Ostuni",
+          "total_eur": 950.0,
+          "days": 15
+        },
+        {
+          "name": "Pizza 400 gradi",
+          "total_eur": 99.0,
+          "days": 15
+        },
+        {
+          "name": "Puccia",
+          "total_eur": 91.5,
+          "days": 15
+        },
+        {
+          "name": "Diesel",
+          "total_eur": 100.0,
+          "days": 15
+        },
+        {
+          "name": "Rosticceria",
+          "total_eur": 12.0,
+          "days": 15
+        },
+        {
+          "name": "Pasticciotti",
+          "total_eur": 17.6,
+          "days": 15
+        },
+        {
+          "name": "Spesa girls",
+          "total_eur": 31.04,
+          "days": 15
+        },
+        {
+          "name": "Cena Otranto 2",
+          "total_eur": 175.0,
+          "days": 15
+        },
+        {
+          "name": "Parcheggio",
+          "total_eur": 8.0,
+          "days": 15
+        },
+        {
+          "name": "Drinks",
+          "total_eur": 84.0,
+          "days": 15
+        },
+        {
+          "name": "Cena Otranto",
+          "total_eur": 158.0,
+          "days": 15
+        },
+        {
+          "name": "Benzina barca",
+          "total_eur": 26.0,
+          "days": 15
+        },
+        {
+          "name": "Barca",
+          "total_eur": 130.0,
+          "days": 15
+        },
+        {
+          "name": "Hotel Otranto",
+          "total_eur": 840.0,
+          "days": 15
+        },
+        {
+          "name": "Cena Santa Maria di Leuca",
+          "total_eur": 179.0,
+          "days": 15
+        },
+        {
+          "name": "Parcheggio Grotta Verde",
+          "total_eur": 3.0,
+          "days": 15
+        },
+        {
+          "name": "Cena Tenuta San Leonardo",
+          "total_eur": 232.0,
+          "days": 15
+        },
+        {
+          "name": "Parcheggio Punta suina",
+          "total_eur": 6.0,
+          "days": 15
+        },
+        {
+          "name": "Hotel Santa Maria di Leuca",
+          "total_eur": 400.0,
+          "days": 15
+        },
+        {
+          "name": "Masseria Palombara",
+          "total_eur": 245.0,
+          "days": 15
+        },
+        {
+          "name": "Carburante 2",
+          "total_eur": 100.0,
+          "days": 15
+        },
+        {
+          "name": "Spiaggine",
+          "total_eur": 55.0,
+          "days": 15
+        },
+        {
+          "name": "Cena Sant'Isidoro",
+          "total_eur": 166.0,
+          "days": 15
+        },
+        {
+          "name": "Hotel Punta Prosciutto",
+          "total_eur": 420.0,
+          "days": 15
+        },
+        {
+          "name": "Cena Matera",
+          "total_eur": 238.0,
+          "days": 15
+        },
+        {
+          "name": "Pranzo Matera",
+          "total_eur": 93.0,
+          "days": 15
+        },
+        {
+          "name": "Pedaggio andata",
+          "total_eur": 65.6,
+          "days": 15
+        },
+        {
+          "name": "Hotel Matera",
+          "total_eur": 180.0,
+          "days": 15
+        }
+      ],
+      "expenses_total_eur": 6748.75,
+      "notes": [],
+      "pdf_filenames": []
+    },
+    {
+      "id": "fuerteventura-04-11-novembre-2021",
+      "title": "Fuerteventura - 04/11 Novembre 2021",
+      "folder": "Fuerteventura - 04 11 Novembre 2021",
+      "location_name": "Fuerteventura",
+      "geocoded_query": "Corralejo, Fuerteventura, Spain",
+      "lat": 28.7333,
+      "lng": -13.8667,
+      "country": "Spagna",
+      "country_code": "ES",
+      "start_date": "2021-11-04",
+      "end_date": "2021-11-11",
+      "category": "past",
+      "expenses": [
+        {
+          "name": "Volo + Hotel",
+          "total_eur": 501.85,
+          "days": 8
+        },
+        {
+          "name": "Macchina",
+          "total_eur": 54.5,
+          "days": 8
+        }
+      ],
+      "expenses_total_eur": 556.35,
+      "notes": [],
+      "pdf_filenames": []
+    },
+    {
+      "id": "copenaghen-10-13-marzo-2022",
+      "title": "Copenaghen - 10/13 Marzo 2022",
+      "folder": "Copenaghen - 10 13 Marzo 2022",
+      "location_name": "Copenaghen",
+      "geocoded_query": "Copenhagen, Denmark",
+      "lat": 55.6761,
+      "lng": 12.5683,
+      "country": "Danimarca",
+      "country_code": "DK",
+      "start_date": "2022-03-10",
+      "end_date": "2022-03-13",
+      "category": "past",
+      "expenses": [
+        {
+          "name": "Bibite",
+          "total_eur": 7.5,
+          "days": 4
+        },
+        {
+          "name": "Malmo",
+          "total_eur": 78.5,
+          "days": 4
+        },
+        {
+          "name": "Dolce",
+          "total_eur": 25.0,
+          "days": 4
+        },
+        {
+          "name": "Bar",
+          "total_eur": 13.0,
+          "days": 4
+        },
+        {
+          "name": "Hotel",
+          "total_eur": 522.26,
+          "days": 4
+        },
+        {
+          "name": "Bus",
+          "total_eur": 19.35,
+          "days": 4
+        },
+        {
+          "name": "Parcheggio",
+          "total_eur": 24.0,
+          "days": 4
+        },
+        {
+          "name": "Autostrada andata",
+          "total_eur": 3.5,
+          "days": 4
+        },
+        {
+          "name": "Volo",
+          "total_eur": 0.0,
+          "days": 4
+        }
+      ],
+      "expenses_total_eur": 693.11,
+      "notes": [],
+      "pdf_filenames": [
+        "Carte_di_Imbarco_-_Andata.pdf",
+        "boarding-pass.pdf"
+      ]
+    },
+    {
+      "id": "parigi-29-maggio-1-aprile-2022",
+      "title": "Parigi - 29 Maggio/1 Aprile 2022",
+      "folder": "Parigi - 29 Maggio 1 Aprile 2022",
+      "location_name": "Parigi",
+      "geocoded_query": "Paris, France",
+      "lat": 48.8566,
+      "lng": 2.3522,
+      "country": "Francia",
+      "country_code": "FR",
+      "start_date": "2022-05-29",
+      "end_date": "2023-04-01",
+      "category": "past",
+      "expenses": [
+        {
+          "name": "Acqua",
+          "total_eur": 4.4,
+          "days": 308
+        },
+        {
+          "name": "Uber",
+          "total_eur": 203.12,
+          "days": 308
+        },
+        {
+          "name": "Croissant",
+          "total_eur": 2.4,
+          "days": 308
+        },
+        {
+          "name": "Formaggi",
+          "total_eur": 16.0,
+          "days": 308
+        },
+        {
+          "name": "Montparnasse",
+          "total_eur": 40.0,
+          "days": 308
+        },
+        {
+          "name": "Metro",
+          "total_eur": 7.6,
+          "days": 308
+        },
+        {
+          "name": "Colazione top",
+          "total_eur": 37.5,
+          "days": 308
+        },
+        {
+          "name": "Cena stellato",
+          "total_eur": 367.0,
+          "days": 308
+        },
+        {
+          "name": "Battello",
+          "total_eur": 30.0,
+          "days": 308
+        },
+        {
+          "name": "Crepes",
+          "total_eur": 39.0,
+          "days": 308
+        },
+        {
+          "name": "Colazione",
+          "total_eur": 37.7,
+          "days": 308
+        },
+        {
+          "name": "Cena",
+          "total_eur": 84.4,
+          "days": 308
+        },
+        {
+          "name": "Giardini Versailles",
+          "total_eur": 17.0,
+          "days": 308
+        },
+        {
+          "name": "Uber Versailles",
+          "total_eur": 31.45,
+          "days": 308
+        },
+        {
+          "name": "Macarons",
+          "total_eur": 7.2,
+          "days": 308
+        },
+        {
+          "name": "Pranzo",
+          "total_eur": 35.8,
+          "days": 308
+        },
+        {
+          "name": "Parcheggio Malpensa",
+          "total_eur": 23.4,
+          "days": 308
+        },
+        {
+          "name": "Tour Eiffel",
+          "total_eur": 207.0,
+          "days": 308
+        },
+        {
+          "name": "Versailles",
+          "total_eur": 54.0,
+          "days": 308
+        },
+        {
+          "name": "Hotel",
+          "total_eur": 323.0,
+          "days": 308
+        },
+        {
+          "name": "Volo",
+          "total_eur": 431.91,
+          "days": 308
+        }
+      ],
+      "expenses_total_eur": 1999.88,
+      "notes": [],
+      "pdf_filenames": [
+        "BoardingPass.pdf",
+        "Tour_Eiffel.pdf",
+        "dPLF.pdf",
+        "doc.pdf",
+        "plan-metro16395832482021-2022.pdf"
+      ]
+    },
+    {
+      "id": "creta-9-19-agosto-2022",
+      "title": "Creta - 9/19 Agosto 2022",
+      "folder": "Creta - 9 19 Agosto 2022",
+      "location_name": "Creta",
+      "geocoded_query": "Heraklion, Crete, Greece",
+      "lat": 35.3387,
+      "lng": 25.1442,
+      "country": "Grecia",
+      "country_code": "GR",
+      "start_date": "2022-08-09",
+      "end_date": "2022-08-19",
+      "category": "past",
+      "expenses": [
+        {
+          "name": "Volo",
+          "total_eur": 1417.38,
+          "days": 11
+        },
+        {
+          "name": "Auto",
+          "total_eur": 588.0,
+          "days": 11
+        },
+        {
+          "name": "Hotel",
+          "total_eur": 725.0,
+          "days": 11
+        },
+        {
+          "name": "Parcheggio Malpensa",
+          "total_eur": 159.06,
+          "days": 11
+        }
+      ],
+      "expenses_total_eur": 2889.44,
+      "notes": [],
+      "pdf_filenames": [
+        "GR-CRE4-324249_113029_080520221320.pdf",
+        "R3830604227.pdf"
+      ]
+    },
+    {
+      "id": "sharm-el-sheikh-26-settembre-5-ottobre-2022",
+      "title": "Sharm El Sheikh - 26 Settembre/5 Ottobre 2022",
+      "folder": "Sharm El Sheikh - 26 Settembre 5 Ottobre 2022",
+      "location_name": "Sharm El Sheikh",
+      "geocoded_query": "Sharm El Sheikh, Egypt",
+      "lat": 27.9158,
+      "lng": 34.33,
+      "country": "Egitto",
+      "country_code": "EG",
+      "start_date": "2022-09-26",
+      "end_date": "2022-10-05",
+      "category": "past",
+      "expenses": [
+        {
+          "name": "Sim",
+          "total_eur": 39.0,
+          "days": 10
+        },
+        {
+          "name": "Fototessera",
+          "total_eur": 15.0,
+          "days": 10
+        },
+        {
+          "name": "Costo Totale",
+          "total_eur": 1245.38,
+          "days": 10
+        }
+      ],
+      "expenses_total_eur": 1299.38,
+      "notes": [
+        {
+          "heading": "E-Sim",
+          "body": "Coupon 5% - BNOMAD"
+        }
+      ],
+      "pdf_filenames": [
+        "2022-09-09_Polizza_sanitaria_Egitto.pdf"
+      ]
+    },
+    {
+      "id": "islanda-08-11-ottobre-2022",
+      "title": "Islanda - 08/11 Ottobre 2022",
+      "folder": "Islanda - 08 11 Ottobre 2022",
+      "location_name": "Islanda",
+      "geocoded_query": "Reykjavik, Iceland",
+      "lat": 64.1466,
+      "lng": -21.9426,
+      "country": "Islanda",
+      "country_code": "IS",
+      "start_date": "2022-10-08",
+      "end_date": "2022-10-11",
+      "category": "past",
+      "expenses": [
+        {
+          "name": "Volo",
+          "total_eur": 184.46,
+          "days": 4
+        },
+        {
+          "name": "Hotel",
+          "total_eur": 142.5,
+          "days": 4
+        },
+        {
+          "name": "Auto",
+          "total_eur": 73.22,
+          "days": 4
+        }
+      ],
+      "expenses_total_eur": 400.18,
+      "notes": [],
+      "pdf_filenames": [
+        "islanda.pdf"
+      ]
+    },
+    {
+      "id": "stoccolma-21-24-ottobre-2022",
+      "title": "Stoccolma - 21/24 Ottobre 2022",
+      "folder": "Stoccolma - 21 24 Ottobre 2022",
+      "location_name": "Stoccolma",
+      "geocoded_query": "Stockholm, Sweden",
+      "lat": 59.3293,
+      "lng": 18.0686,
+      "country": "Svezia",
+      "country_code": "SE",
+      "start_date": "2022-10-21",
+      "end_date": "2022-10-24",
+      "category": "past",
+      "expenses": [
+        {
+          "name": "Costo Totale",
+          "total_eur": 384.14,
+          "days": 3
+        }
+      ],
+      "expenses_total_eur": 384.14,
+      "notes": [],
+      "pdf_filenames": []
+    },
+    {
+      "id": "praga-14-17-aprile-2023",
+      "title": "Praga 14/17 Aprile 2023",
+      "folder": "Praga 14 17 Aprile 2023",
+      "location_name": "Praga",
+      "geocoded_query": "Prague, Czech Republic",
+      "lat": 50.0755,
+      "lng": 14.4378,
+      "country": "Repubblica Ceca",
+      "country_code": "CZ",
+      "start_date": "2023-04-14",
+      "end_date": "2023-04-17",
+      "category": "past",
+      "expenses": [
+        {
+          "name": "Volo",
+          "total_eur": 89.95,
+          "days": 3
+        },
+        {
+          "name": "Hotel",
+          "total_eur": 144.9,
+          "days": 3
+        },
+        {
+          "name": "Cibo e altro",
+          "total_eur": 148.03,
+          "days": 3
+        }
+      ],
+      "expenses_total_eur": 382.88,
+      "notes": [],
+      "pdf_filenames": []
+    },
+    {
+      "id": "sharm-el-sheik-03-10-maggio-2023",
+      "title": "Sharm El Sheik 03/10 Maggio 2023",
+      "folder": "Sharm El Sheik 03 10 Maggio 2023",
+      "location_name": "Sharm El Sheik",
+      "geocoded_query": "Sharm El Sheikh, Egypt",
+      "lat": 27.9158,
+      "lng": 34.33,
+      "country": "Egitto",
+      "country_code": "EG",
+      "start_date": "2023-05-03",
+      "end_date": "2023-05-10",
+      "category": "past",
+      "expenses": [
+        {
+          "name": "Volo",
+          "total_eur": 862.38,
+          "days": 8
+        },
+        {
+          "name": "Parcheggio",
+          "total_eur": 65.7,
+          "days": 8
+        },
+        {
+          "name": "Hotel",
+          "total_eur": 1083.0,
+          "days": 8
+        },
+        {
+          "name": "Diving",
+          "total_eur": 499.0,
+          "days": 8
+        },
+        {
+          "name": "Cairo",
+          "total_eur": 780.0,
+          "days": 8
+        },
+        {
+          "name": "Ras Mohammed",
+          "total_eur": 150.0,
+          "days": 8
+        },
+        {
+          "name": "Tiran",
+          "total_eur": 50.0,
+          "days": 8
+        }
+      ],
+      "expenses_total_eur": 3490.08,
+      "notes": [],
+      "pdf_filenames": []
+    },
+    {
+      "id": "thailandia-15-30-agosto-2023",
+      "title": "Thailandia 15/30 Agosto 2023",
+      "folder": "Thailandia 15 30 Agosto 2023",
+      "location_name": "Thailandia",
+      "geocoded_query": "Bangkok, Thailand",
+      "lat": 13.7563,
+      "lng": 100.5018,
+      "country": "Thailandia",
+      "country_code": "TH",
+      "start_date": "2023-08-15",
+      "end_date": "2023-08-30",
+      "category": "past",
+      "expenses": [
+        {
+          "name": "Volo Qatar Airways",
+          "total_eur": 1044.66,
+          "days": 18
+        },
+        {
+          "name": "Volo Koh Samui - Bangkok",
+          "total_eur": 128.25,
+          "days": 18
+        },
+        {
+          "name": "Volo Chang Rai -Koh Samui",
+          "total_eur": 122.21,
+          "days": 18
+        },
+        {
+          "name": "Volo Bangkok - Chang Rai",
+          "total_eur": 38.6,
+          "days": 18
+        },
+        {
+          "name": "Hotel Bangkok",
+          "total_eur": 9.0,
+          "days": 18
+        },
+        {
+          "name": "Assicurazione",
+          "total_eur": 57.74,
+          "days": 18
+        },
+        {
+          "name": "Immersione",
+          "total_eur": 114.0,
+          "days": 18
+        },
+        {
+          "name": "Prelievi",
+          "total_eur": 200.0,
+          "days": 18
+        },
+        {
+          "name": "Spese Totali",
+          "total_eur": 1014.71,
+          "days": 18
+        }
+      ],
+      "expenses_total_eur": 2729.17,
+      "notes": [],
+      "pdf_filenames": [
+        "E-Ticket.pdf",
+        "FascicoloInformativo.pdf",
+        "ITCoperturaTuttoInclusoDipA.pdf",
+        "ITCoperturaTuttoInclusoIpid.pdf",
+        "ScheduleWording.pdf",
+        "Travel_Reservation_24AUG_for_DAVIDE_ZANELLATI.pdf",
+        "Travel_Reservation_24AUG_for_ELETTRA_MANDELLI.pdf",
+        "Travel_Reservation_24AUG_for_MARGHERITA_NOBILE.pdf",
+        "Travel_Reservation_24AUG_for_STEFANO_RUSSO.pdf",
+        "Travel_Reservation_29AUG_for_DAVIDE_ZANELLATI.pdf",
+        "Travel_Reservation_29AUG_for_ELETTRA_MANDELLI.pdf",
+        "Travel_Reservation_29AUG_for_MARGHERITA_NOBILE.pdf",
+        "Travel_Reservation_29AUG_for_STEFANO_RUSSO.pdf",
+        "Your_Electronic_Ticket-EMD_Receipt.pdf",
+        "Your_Electronic_Ticket-EMD_Receipt_(1).pdf",
+        "Your_Electronic_Ticket-EMD_Receipt_(2).pdf",
+        "Your_Electronic_Ticket-EMD_Receipt_(3).pdf"
+      ]
+    },
+    {
+      "id": "sharm-el-sheik-diving-safari-09-16-settembre-2023",
+      "title": "Sharm El Sheik - Diving Safari - 09/16 Settembre 2023",
+      "folder": "Sharm El Sheik - Diving Safari - 09 16 Settembre 2",
+      "location_name": "Sharm El Sheik",
+      "geocoded_query": "Sharm El Sheikh, Egypt",
+      "lat": 27.9158,
+      "lng": 34.33,
+      "country": "Egitto",
+      "country_code": "EG",
+      "start_date": "2023-09-09",
+      "end_date": "2023-09-16",
+      "category": "past",
+      "expenses": [
+        {
+          "name": "Safari",
+          "total_eur": 989.0,
+          "days": 7
+        },
+        {
+          "name": "Noleggio Attrezzatura",
+          "total_eur": 190.0,
+          "days": 7
+        },
+        {
+          "name": "Tassa Parchi",
+          "total_eur": 90.0,
+          "days": 7
+        },
+        {
+          "name": "Mancia Staff",
+          "total_eur": 70.0,
+          "days": 7
+        },
+        {
+          "name": "Volo",
+          "total_eur": 230.96,
+          "days": 7
+        },
+        {
+          "name": "Parcheggio aeroporto",
+          "total_eur": 47.0,
+          "days": 7
+        },
+        {
+          "name": "Sim",
+          "total_eur": 7.5,
+          "days": 7
+        }
+      ],
+      "expenses_total_eur": 1624.46,
+      "notes": [],
+      "pdf_filenames": [
+        "2023_On_Board_Sales_in_EUR_(ENG)_-_V_21.01.2023.pdf",
+        "Bonifico_Estero_-_Fineco.pdf",
+        "MEDICAL_Form_diving_and_courses_-_ITA.pdf",
+        "Parkos.pdf",
+        "Sample-Itinerary-Wrecks-Reefs.pdf"
+      ]
+    },
+    {
+      "id": "sharm-el-sheik-4-12-novembre-2023",
+      "title": "Sharm El Sheik - 4/12 Novembre 2023",
+      "folder": "Sharm El Sheik - 4 12 Novembre 2023",
+      "location_name": "Sharm El Sheik",
+      "geocoded_query": "Sharm El Sheikh, Egypt",
+      "lat": 27.9158,
+      "lng": 34.33,
+      "country": "Egitto",
+      "country_code": "EG",
+      "start_date": "2023-11-04",
+      "end_date": "2023-11-12",
+      "category": "past",
+      "expenses": [
+        {
+          "name": "Volo",
+          "total_eur": 364.48,
+          "days": 8
+        },
+        {
+          "name": "Hotel",
+          "total_eur": 381.6,
+          "days": 8
+        },
+        {
+          "name": "Parcheggio",
+          "total_eur": 79.2,
+          "days": 8
+        },
+        {
+          "name": "Immersioni",
+          "total_eur": 497.0,
+          "days": 8
+        }
+      ],
+      "expenses_total_eur": 1322.28,
+      "notes": [],
+      "pdf_filenames": [
+        "Summary_Group_Davide_Zanellati_x_5_pax_-_NOV_2023.pdf"
+      ]
+    },
+    {
+      "id": "sharm-el-sheik-16-24-dicembre-2023",
+      "title": "Sharm El Sheik - 16/24 Dicembre 2023",
+      "folder": "Sharm El Sheik - 16 24 Dicembre 2023",
+      "location_name": "Sharm El Sheik",
+      "geocoded_query": "Sharm El Sheikh, Egypt",
+      "lat": 27.9158,
+      "lng": 34.33,
+      "country": "Egitto",
+      "country_code": "EG",
+      "start_date": "2023-12-16",
+      "end_date": "2023-12-24",
+      "category": "past",
+      "expenses": [
+        {
+          "name": "Volo",
+          "total_eur": 255.0,
+          "days": 9
+        },
+        {
+          "name": "Hotel",
+          "total_eur": 255.0,
+          "days": 9
+        },
+        {
+          "name": "Parcheggio",
+          "total_eur": 79.2,
+          "days": 9
+        },
+        {
+          "name": "Immersioni",
+          "total_eur": 640.0,
+          "days": 9
+        }
+      ],
+      "expenses_total_eur": 1229.2,
+      "notes": [],
+      "pdf_filenames": []
+    },
+    {
+      "id": "vienna-5-8-gennaio-2024",
+      "title": "Vienna - 5/8 Gennaio 2024",
+      "folder": "Vienna - 5 8 Gennaio 2024",
+      "location_name": "Vienna",
+      "geocoded_query": "Vienna, Austria",
+      "lat": 48.2082,
+      "lng": 16.3738,
+      "country": "Austria",
+      "country_code": "AT",
+      "start_date": "2024-01-05",
+      "end_date": "2024-01-08",
+      "category": "past",
+      "expenses": [
+        {
+          "name": "Volo",
+          "total_eur": 73.43,
+          "days": 4
+        },
+        {
+          "name": "Hotel",
+          "total_eur": 109.74,
+          "days": 4
+        },
+        {
+          "name": "Spese",
+          "total_eur": null,
+          "days": 4
+        },
+        {
+          "name": "Parcheggio",
+          "total_eur": 21.3,
+          "days": 4
+        }
+      ],
+      "expenses_total_eur": 204.47,
+      "notes": [],
+      "pdf_filenames": []
+    },
+    {
+      "id": "hurgada-12-20-marzo-2024",
+      "title": "Hurgada - 12/20 Marzo 2024",
+      "folder": "Hurgada - 12 20 Marzo 2024",
+      "location_name": "Hurgada",
+      "geocoded_query": "Hurghada, Egypt",
+      "lat": 27.2579,
+      "lng": 33.8116,
+      "country": "Egitto",
+      "country_code": "EG",
+      "start_date": "2024-03-12",
+      "end_date": "2024-03-20",
+      "category": "past",
+      "expenses": [
+        {
+          "name": "Volo",
+          "total_eur": 202.0,
+          "days": 8
+        },
+        {
+          "name": "Hotel",
+          "total_eur": 132.5,
+          "days": 8
+        },
+        {
+          "name": "Spese",
+          "total_eur": 189.63,
+          "days": 8
+        },
+        {
+          "name": "Parcheggio",
+          "total_eur": 79.2,
+          "days": 8
+        },
+        {
+          "name": "Immersioni",
+          "total_eur": 332.0,
+          "days": 8
+        }
+      ],
+      "expenses_total_eur": 935.33,
+      "notes": [],
+      "pdf_filenames": []
+    },
+    {
+      "id": "argentario-24-28-aprile-2024",
+      "title": "Argentario - 24/28 Aprile 2024",
+      "folder": "Argentario - 24 28 Aprile 2024",
+      "location_name": "Argentario",
+      "geocoded_query": "Monte Argentario, Toscana, Italia",
+      "lat": 42.3667,
+      "lng": 11.1167,
+      "country": "Italia",
+      "country_code": "IT",
+      "start_date": "2024-04-24",
+      "end_date": "2024-04-28",
+      "category": "past",
+      "expenses": [
+        {
+          "name": "Autostrada",
+          "total_eur": 67.0,
+          "days": 5
+        },
+        {
+          "name": "Hotel",
+          "total_eur": 300.0,
+          "days": 5
+        },
+        {
+          "name": "Immersioni",
+          "total_eur": 400.0,
+          "days": 5
+        },
+        {
+          "name": "Spese",
+          "total_eur": null,
+          "days": 5
+        }
+      ],
+      "expenses_total_eur": 767.0,
+      "notes": [],
+      "pdf_filenames": []
+    },
+    {
+      "id": "cracovia-24-27-maggio-2024",
+      "title": "Cracovia - 24/27 Maggio 2024",
+      "folder": "Cracovia - 24 27 Maggio 2024",
+      "location_name": "Cracovia",
+      "geocoded_query": "Krakow, Poland",
+      "lat": 50.0647,
+      "lng": 19.945,
+      "country": "Polonia",
+      "country_code": "PL",
+      "start_date": "2024-05-24",
+      "end_date": "2024-05-27",
+      "category": "past",
+      "expenses": [
+        {
+          "name": "Volo",
+          "total_eur": 125.98,
+          "days": 3
+        },
+        {
+          "name": "Hotel",
+          "total_eur": 76.33,
+          "days": 3
+        },
+        {
+          "name": "Spese",
+          "total_eur": 258.18,
+          "days": 3
+        },
+        {
+          "name": "Parcheggio",
+          "total_eur": 14.1,
+          "days": 3
+        }
+      ],
+      "expenses_total_eur": 474.59,
+      "notes": [],
+      "pdf_filenames": []
+    },
+    {
+      "id": "sharm-el-sheik-5-13-giugno-2024",
+      "title": "Sharm El Sheik - 5/13 Giugno 2024",
+      "folder": "Sharm El Sheik - 5 13 Giugno 2024",
+      "location_name": "Sharm El Sheik",
+      "geocoded_query": "Sharm El Sheikh, Egypt",
+      "lat": 27.9158,
+      "lng": 34.33,
+      "country": "Egitto",
+      "country_code": "EG",
+      "start_date": "2024-06-05",
+      "end_date": "2024-06-13",
+      "category": "past",
+      "expenses": [
+        {
+          "name": "Volo",
+          "total_eur": 276.96,
+          "days": 9
+        },
+        {
+          "name": "Hotel",
+          "total_eur": 272.0,
+          "days": 9
+        },
+        {
+          "name": "Parcheggio",
+          "total_eur": 5.24,
+          "days": 9
+        },
+        {
+          "name": "Anticipo Immersioni",
+          "total_eur": 250.0,
+          "days": 9
+        },
+        {
+          "name": "Spese",
+          "total_eur": 33.0,
+          "days": 9
+        },
+        {
+          "name": "Blu Hole",
+          "total_eur": 100.0,
+          "days": 9
+        },
+        {
+          "name": "Saldo Immersioni",
+          "total_eur": 318.0,
+          "days": 9
+        }
+      ],
+      "expenses_total_eur": 1255.2,
+      "notes": [],
+      "pdf_filenames": []
+    },
+    {
+      "id": "islanda-15-26-agosto-2024",
+      "title": "Islanda - 15/26 Agosto 2024",
+      "folder": "Islanda - 15 26 Agosto 2024",
+      "location_name": "Islanda",
+      "geocoded_query": "Reykjavik, Iceland",
+      "lat": 64.1466,
+      "lng": -21.9426,
+      "country": "Islanda",
+      "country_code": "IS",
+      "start_date": "2024-08-15",
+      "end_date": "2024-08-26",
+      "category": "past",
+      "expenses": [
+        {
+          "name": "Volo andata",
+          "total_eur": 796.02,
+          "days": 12
+        },
+        {
+          "name": "Volo ritorno",
+          "total_eur": 536.37,
+          "days": 12
+        },
+        {
+          "name": "Hotel",
+          "total_eur": 2601.0,
+          "days": 12
+        },
+        {
+          "name": "Escursioni",
+          "total_eur": 1080.3,
+          "days": 12
+        },
+        {
+          "name": "Noleggio Auto",
+          "total_eur": 1311.0,
+          "days": 12
+        },
+        {
+          "name": "Parcheggio",
+          "total_eur": 165.01,
+          "days": 12
+        },
+        {
+          "name": "Spese varie",
+          "total_eur": 3812.16,
+          "days": 12
+        }
+      ],
+      "expenses_total_eur": 10301.86,
+      "notes": [
+        {
+          "heading": "Volo",
+          "body": "!\n\n!\n\n!"
+        },
+        {
+          "heading": "Piano di Viaggio",
+          "body": "### Link Itinerario\n\nhttps://maps.app.goo.gl/EGW2SXmwfyFCqHSW6\n\n### 15/08 - Reykjavik\n\nRitiriamo la macchina, andiamo in città a pranzare e girare e la sera, con 20 min di macchina, ci dirigiamo all’appartamento ** per 298 eur**o**\n\n### 16/08 - Silfra, Geyser nel Parco Thingvellir, Gulfoss\n\nPartiamo per la mia  delle 9.45, sono 45 min di macchina per arrivare . Io farò immersione (durata 2/3 ore), voi passeggiate per il parco.\n\n\n\nVediamo i Geyser del Parco Nazionale Thingvellir.\n\nFacciamo 1 ora di macchina per andare alla cascata di Gulfoss\n\nFacciamo 1 ora di macchina per ** per 180 euro\n\n### 17/08 - Cascate **Seljalandsfoss** e **Skógafoss, Promontorio di Dyrhólaey, Spiaggia Nera Vik**\n\nValutare traghetto per isola Westaman Island per vedere puffin partendo da , 31 euro a testa il ticket \n\nFacciamo 1 ora di macchina per la prima cascata, poi altri 25 min per la seconda, poi altri 25 per il promontorio, poi 15 min per Vik e la spiaggia nera\n\nFacciamo 2 ore e 40 di macchina per la ** per 279 euro\n\n### 18/08 - Laguna Jökulsarlon\n\nFacciamo 20 min di macchina per andare a fare l’ per 360 euro (120 euro a testa), durata 4 ore\n\nGuardiamo la Diamond Beach a 5 min da lì\n\nFacciamo 1 ora di macchina per dormire a  ****per 410 euro (pagamento il 13 Agosto sulla mia Amex)\n\n### 19/08 - Fiordi, Cascate Litlanesfoss e Hengifoss, **Stuðlagil Canyon**\n\nGuidiamo per circa 3 ore, passando a fianco a tutti i fiordi (con tappe per piccole visite e foto) in direzione delle cascate e poi del Canyon che sono tutti vicini tra loro\n\nDal Canyon facciamo un’ora di macchina per raggiungere e dormire in ** per 209 euro\n\n### 20/08 - Cascata Dettifoss, Hverir, Cratere Vulcano Hverfjall\n\nFacciamo 2 ore e 10 min di macchina per la cascata\n\nFacciamo 40 min di macchina per Hverir dove vedere il terreno che ribolle e i fumi. Possibilità di fare il bagno nei Myvatn Nature Baths.\n\nFacendo altri 20 min di macchina si raggiunge il Vulcano\n\nFacciamo 35 min di macchina per dormire a  per 239 euro (pagamento il 15 Agosto sulla mia Amex)\n\n### 21/08 - V**ulcano Askja**\n\nFacciamo 45 min di macchina e possiamo fare il  nella zona anche senza  che costerebbe 1215 euro ( 405 a persona) per tutto il giorno\n\nFacciamo 1 ora di macchina per raggiungere  per 222 euro (pagamento il 5 Agosto sulla mia Amex)\n\n### 22/08 - Tour Balene Husavik, Cascate Gooafoss\n\nFacciamo 35 min di macchina per raggiungere Husavik, in cui fare il  per 420 euro (140 euro a testa), durata 2/3 ore\n\nFacciamo 40 min di macchina al termine del tour per andare alla cascata\n\nFacciamo 1 ora e 45 min di macchina per alloggiare a ** per 202 euro (pagamento il 19 Agosto sulla mia Amex)\n\n### 23/08 - **Akureyri, Hvítserkur (Roccia Rinoceronte) e Borðeyri**\n\nFacciamo 1 ora e 10 min di macchina per visitare la città di Akureyri\n\nFacciamo 2 ore e 35 min per La roccia rinoceronte\n\nFacciamo 1 ora di macchina per Borǒeyri\n\nFacciamo 45 min di macchina per ** per 197 euro (pagamento il 14 Agosto sulla mia Amex)\n\n### 24/08 - P**enisola di Snæfellsnes**\n\nFacciamo 1 ora e 45 min di macchina per raggiungere il monte Kirkjufellsfoss e Monte Kirkjufell\n\nFacciamo 45 min di macchina per faro Svörtuloft\n\nFacciamo 1 ora di macchina per il ghiacciaio Snæfellsjökull\n\nFacciamo 1 ora e 10 min di macchina per dormire a  per 179 euro (pagamento il 20 Agosto sulla mia Amex)\n\n### 25/08 - Tunnel Lava Raufarhólshellir - Blue Lagoon\n\nFacciamo 40 min di macchina per la  per 300 euro (100 euro a testa), durata 3 ore \n\nFacciamo 1 ora e 15 min di macchina per passare il pomeriggio nelle terme naturali  per 300 euro (100 euro a testa)\n\nRientro in città per la notte in  per 186 euro**\n\n### 26/08 - Perlan Museum, Aeroporto\n\nVisita al  per 108 euro (36 euro a testa), pranzo e rientro in aeroporto"
+        }
+      ],
+      "pdf_filenames": [
+        "ticket-DIV-T72396881.pdf"
+      ]
+    },
+    {
+      "id": "berlino-5-7-settembre-2024",
+      "title": "Berlino - 5/7 Settembre 2024",
+      "folder": "Berlino - 5 7 Settembre 2024",
+      "location_name": "Berlino",
+      "geocoded_query": "Berlin, Germany",
+      "lat": 52.52,
+      "lng": 13.405,
+      "country": "Germania",
+      "country_code": "DE",
+      "start_date": "2024-09-05",
+      "end_date": "2024-09-07",
+      "category": "past",
+      "expenses": [
+        {
+          "name": "Volo",
+          "total_eur": 47.28,
+          "days": 3
+        },
+        {
+          "name": "Hotel",
+          "total_eur": 119.6,
+          "days": 3
+        },
+        {
+          "name": "Spese",
+          "total_eur": 190.58,
+          "days": 3
+        },
+        {
+          "name": "IFA",
+          "total_eur": 17.75,
+          "days": 3
+        }
+      ],
+      "expenses_total_eur": 375.21,
+      "notes": [],
+      "pdf_filenames": [
+        "ifa-2024-tickets-106022977.pdf"
+      ]
+    },
+    {
+      "id": "el-gouna-9-19-settembre-2024",
+      "title": "El Gouna - 9/19 Settembre 2024",
+      "folder": "El Gouna - 9 19 Settembre 2024",
+      "location_name": "El Gouna",
+      "geocoded_query": "El Gouna, Egypt",
+      "lat": 27.394,
+      "lng": 33.679,
+      "country": "Egitto",
+      "country_code": "EG",
+      "start_date": "2024-09-09",
+      "end_date": "2024-09-19",
+      "category": "past",
+      "expenses": [
+        {
+          "name": "Volo",
+          "total_eur": 327.48,
+          "days": 11
+        },
+        {
+          "name": "Hotel",
+          "total_eur": 180.0,
+          "days": 11
+        },
+        {
+          "name": "Parcheggio",
+          "total_eur": 90.25,
+          "days": 11
+        },
+        {
+          "name": "Immersioni",
+          "total_eur": 0.0,
+          "days": 11
+        },
+        {
+          "name": "Kite Surf",
+          "total_eur": 925.0,
+          "days": 11
+        },
+        {
+          "name": "Cibo",
+          "total_eur": 253.54,
+          "days": 11
+        }
+      ],
+      "expenses_total_eur": 1776.27,
+      "notes": [],
+      "pdf_filenames": []
+    },
+    {
+      "id": "hurgada-diving-safari-21-28-settembre-2024",
+      "title": "Hurgada - Diving Safari - 21/28 Settembre 2024",
+      "folder": "Hurgada - Diving Safari - 21 28 Settembre 2024",
+      "location_name": "Hurgada",
+      "geocoded_query": "Hurghada, Egypt",
+      "lat": 27.2579,
+      "lng": 33.8116,
+      "country": "Egitto",
+      "country_code": "EG",
+      "start_date": "2024-09-21",
+      "end_date": "2024-09-28",
+      "category": "past",
+      "expenses": [
+        {
+          "name": "Volo 2",
+          "total_eur": 415.46,
+          "days": 7
+        },
+        {
+          "name": "Safari",
+          "total_eur": 759.0,
+          "days": 7
+        },
+        {
+          "name": "Parcheggio",
+          "total_eur": 202.35,
+          "days": 7
+        },
+        {
+          "name": "Spese",
+          "total_eur": 213.0,
+          "days": 7
+        }
+      ],
+      "expenses_total_eur": 1589.81,
+      "notes": [],
+      "pdf_filenames": []
+    },
+    {
+      "id": "el-gouna-10-21-dicembre-2024",
+      "title": "El Gouna - 10/21 Dicembre 2024",
+      "folder": "El Gouna - 10 21 Dicembre 2024",
+      "location_name": "El Gouna",
+      "geocoded_query": "El Gouna, Egypt",
+      "lat": 27.394,
+      "lng": 33.679,
+      "country": "Egitto",
+      "country_code": "EG",
+      "start_date": "2024-12-10",
+      "end_date": "2024-12-21",
+      "category": "past",
+      "expenses": [
+        {
+          "name": "Volo",
+          "total_eur": 113.17,
+          "days": 12
+        },
+        {
+          "name": "Hotel",
+          "total_eur": 700.0,
+          "days": 12
+        },
+        {
+          "name": "Parcheggio",
+          "total_eur": 95.0,
+          "days": 12
+        },
+        {
+          "name": "Taxi",
+          "total_eur": 10.56,
+          "days": 12
+        },
+        {
+          "name": "Cibo",
+          "total_eur": 543.0,
+          "days": 12
+        },
+        {
+          "name": "Kite",
+          "total_eur": 725.0,
+          "days": 12
+        },
+        {
+          "name": "Immersioni",
+          "total_eur": 190.0,
+          "days": 12
+        },
+        {
+          "name": "Visa e sim",
+          "total_eur": 70.0,
+          "days": 12
+        },
+        {
+          "name": "Luxor",
+          "total_eur": 201.0,
+          "days": 12
+        }
+      ],
+      "expenses_total_eur": 2647.73,
+      "notes": [],
+      "pdf_filenames": [
+        "BoardingPass.pdf"
+      ]
+    },
+    {
+      "id": "corralejo-03-13-febbraio-2025",
+      "title": "Corralejo - 03/13 Febbraio 2025",
+      "folder": "Corralejo - 03 13 Febbraio 2025",
+      "location_name": "Corralejo",
+      "geocoded_query": "Corralejo, Fuerteventura, Spain",
+      "lat": 28.7333,
+      "lng": -13.8667,
+      "country": "Spagna",
+      "country_code": "ES",
+      "start_date": "2025-02-03",
+      "end_date": "2025-02-13",
+      "category": "past",
+      "expenses": [
+        {
+          "name": "Volo",
+          "total_eur": 157.62,
+          "days": 11
+        },
+        {
+          "name": "Appartamento",
+          "total_eur": 530.0,
+          "days": 11
+        },
+        {
+          "name": "Spese",
+          "total_eur": 436.76,
+          "days": 11
+        },
+        {
+          "name": "Parcheggio",
+          "total_eur": 119.0,
+          "days": 11
+        },
+        {
+          "name": "Auto",
+          "total_eur": 178.73,
+          "days": 11
+        },
+        {
+          "name": "Kite",
+          "total_eur": 380.0,
+          "days": 11
+        },
+        {
+          "name": "Immersioni",
+          "total_eur": 120.0,
+          "days": 11
+        }
+      ],
+      "expenses_total_eur": 1922.11,
+      "notes": [],
+      "pdf_filenames": []
+    },
+    {
+      "id": "bregenz-norimberga-21-23-febbraio-2025",
+      "title": "Bregenz/Norimberga - 21/23 Febbraio 2025",
+      "folder": "Bregenz Norimberga - 21 23 Febbraio 2025",
+      "location_name": "Bregenz Norimberga",
+      "geocoded_query": "Bregenz, Austria",
+      "lat": 47.5031,
+      "lng": 9.7471,
+      "country": "Austria",
+      "country_code": "AT",
+      "start_date": "2025-02-21",
+      "end_date": "2025-02-23",
+      "category": "past",
+      "expenses": [
+        {
+          "name": "Auto",
+          "total_eur": null,
+          "days": 3
+        },
+        {
+          "name": "Hotel",
+          "total_eur": null,
+          "days": 3
+        },
+        {
+          "name": "Spese",
+          "total_eur": 357.94,
+          "days": 3
+        }
+      ],
+      "expenses_total_eur": 357.94,
+      "notes": [],
+      "pdf_filenames": []
+    },
+    {
+      "id": "corralejo-25-marzo-01-aprile-2025",
+      "title": "Corralejo - 25 Marzo/01 Aprile 2025",
+      "folder": "Corralejo - 25 Marzo 01 Aprile 2025",
+      "location_name": "Corralejo",
+      "geocoded_query": "Corralejo, Fuerteventura, Spain",
+      "lat": 28.7333,
+      "lng": -13.8667,
+      "country": "Spagna",
+      "country_code": "ES",
+      "start_date": "2025-03-25",
+      "end_date": "2025-04-01",
+      "category": "past",
+      "expenses": [
+        {
+          "name": "Volo",
+          "total_eur": 122.1,
+          "days": 8
+        },
+        {
+          "name": "Appartamento",
+          "total_eur": 228.36,
+          "days": 8
+        },
+        {
+          "name": "Spese",
+          "total_eur": 750.0,
+          "days": 8
+        },
+        {
+          "name": "Parcheggio",
+          "total_eur": 33.62,
+          "days": 8
+        },
+        {
+          "name": "Auto",
+          "total_eur": 49.21,
+          "days": 8
+        },
+        {
+          "name": "Kite",
+          "total_eur": 560.0,
+          "days": 8
+        }
+      ],
+      "expenses_total_eur": 1743.29,
+      "notes": [],
+      "pdf_filenames": []
+    },
+    {
+      "id": "el-gouna-8-23-aprile-2025",
+      "title": "El Gouna - 8/23 Aprile 2025",
+      "folder": "El Gouna - 8 23 Aprile 2025",
+      "location_name": "El Gouna",
+      "geocoded_query": "El Gouna, Egypt",
+      "lat": 27.394,
+      "lng": 33.679,
+      "country": "Egitto",
+      "country_code": "EG",
+      "start_date": "2025-04-08",
+      "end_date": "2025-04-23",
+      "category": "past",
+      "expenses": [
+        {
+          "name": "Volo",
+          "total_eur": 636.96,
+          "days": 16
+        },
+        {
+          "name": "Hotel",
+          "total_eur": 683.38,
+          "days": 16
+        },
+        {
+          "name": "Visa e sim",
+          "total_eur": 40.0,
+          "days": 16
+        },
+        {
+          "name": "Kite",
+          "total_eur": 47.0,
+          "days": 16
+        },
+        {
+          "name": "Parcheggio",
+          "total_eur": 106.45,
+          "days": 16
+        },
+        {
+          "name": "Cambio Volo",
+          "total_eur": 53.0,
+          "days": 16
+        },
+        {
+          "name": "Bagaglio",
+          "total_eur": 122.0,
+          "days": 16
+        },
+        {
+          "name": "Cable Park",
+          "total_eur": 45.0,
+          "days": 16
+        },
+        {
+          "name": "Cibo",
+          "total_eur": 448.78,
+          "days": 16
+        },
+        {
+          "name": "Immersioni",
+          "total_eur": 235.0,
+          "days": 16
+        }
+      ],
+      "expenses_total_eur": 2417.57,
+      "notes": [],
+      "pdf_filenames": []
+    },
+    {
+      "id": "umbria-25-27-aprile-2025",
+      "title": "Umbria - 25/27 Aprile 2025",
+      "folder": "Umbria - 25 27 Aprile 2025",
+      "location_name": "Umbria",
+      "geocoded_query": "Perugia, Umbria, Italia",
+      "lat": 43.1107,
+      "lng": 12.3908,
+      "country": "Italia",
+      "country_code": "IT",
+      "start_date": "2025-04-25",
+      "end_date": "2025-04-27",
+      "category": "past",
+      "expenses": [
+        {
+          "name": "Auto",
+          "total_eur": null,
+          "days": 3
+        },
+        {
+          "name": "Hotel",
+          "total_eur": 61.33,
+          "days": 3
+        },
+        {
+          "name": "Spese",
+          "total_eur": 169.91,
+          "days": 3
+        }
+      ],
+      "expenses_total_eur": 231.24,
+      "notes": [],
+      "pdf_filenames": []
+    },
+    {
+      "id": "slovenia-16-23-agosto-2025",
+      "title": "Slovenia - 16/23 Agosto 2025",
+      "folder": "Slovenia - 16 23 Agosto 2025",
+      "location_name": "Slovenia",
+      "geocoded_query": "Ljubljana, Slovenia",
+      "lat": 46.0569,
+      "lng": 14.5058,
+      "country": "Slovenia",
+      "country_code": "SI",
+      "start_date": "2025-08-16",
+      "end_date": "2025-08-23",
+      "category": "past",
+      "expenses": [
+        {
+          "name": "Auto",
+          "total_eur": null,
+          "days": 8
+        },
+        {
+          "name": "Hotel",
+          "total_eur": null,
+          "days": 8
+        },
+        {
+          "name": "Spese",
+          "total_eur": 974.0,
+          "days": 8
+        }
+      ],
+      "expenses_total_eur": 974.0,
+      "notes": [],
+      "pdf_filenames": []
+    },
+    {
+      "id": "hurgada-bde-20-27-settembre",
+      "title": "Hurgada BDE - 20/27 Settembre",
+      "folder": "Hurgada BDE - 20 27 Settembre",
+      "location_name": "Hurgada BDE",
+      "geocoded_query": "Hurghada, Egypt",
+      "lat": 27.2579,
+      "lng": 33.8116,
+      "country": "Egitto",
+      "country_code": "EG",
+      "start_date": "2025-09-20",
+      "end_date": "2025-09-27",
+      "category": "past",
+      "expenses": [
+        {
+          "name": "Volo",
+          "total_eur": 400.0,
+          "days": 9
+        },
+        {
+          "name": "Barca",
+          "total_eur": 1215.0,
+          "days": 9
+        },
+        {
+          "name": "Parcheggio",
+          "total_eur": 81.22,
+          "days": 9
+        },
+        {
+          "name": "Mancia",
+          "total_eur": 120.0,
+          "days": 9
+        },
+        {
+          "name": "Spesa",
+          "total_eur": 35.0,
+          "days": 9
+        },
+        {
+          "name": "Tasse",
+          "total_eur": 207.0,
+          "days": 9
+        },
+        {
+          "name": "Nuovo volo",
+          "total_eur": 350.77,
+          "days": 9
+        },
+        {
+          "name": "Hotel",
+          "total_eur": 59.0,
+          "days": 9
+        }
+      ],
+      "expenses_total_eur": 2467.99,
+      "notes": [],
+      "pdf_filenames": []
+    },
+    {
+      "id": "el-gouna-7-14-ottobre-2025",
+      "title": "El Gouna - 7/14 Ottobre 2025",
+      "folder": "El Gouna - 7 14 Ottobre 2025",
+      "location_name": "El Gouna",
+      "geocoded_query": "El Gouna, Egypt",
+      "lat": 27.394,
+      "lng": 33.679,
+      "country": "Egitto",
+      "country_code": "EG",
+      "start_date": "2025-10-07",
+      "end_date": "2025-10-14",
+      "category": "past",
+      "expenses": [
+        {
+          "name": "Volo",
+          "total_eur": 364.03,
+          "days": 8
+        },
+        {
+          "name": "Hotel",
+          "total_eur": 225.0,
+          "days": 8
+        },
+        {
+          "name": "Spese",
+          "total_eur": 382.0,
+          "days": 8
+        },
+        {
+          "name": "Parcheggio",
+          "total_eur": 27.0,
+          "days": 8
+        },
+        {
+          "name": "Kite",
+          "total_eur": 73.98,
+          "days": 8
+        }
+      ],
+      "expenses_total_eur": 1072.01,
+      "notes": [],
+      "pdf_filenames": []
+    },
+    {
+      "id": "sardegna-kite-27-ottobre-2-novembre-2025",
+      "title": "Sardegna Kite - 27 Ottobre/2 Novembre 2025",
+      "folder": "Sardegna Kite - 27 Ottobre 2 Novembre 2025",
+      "location_name": "Sardegna Kite",
+      "geocoded_query": "Porto Pollo, Palau, Sardegna, Italia",
+      "lat": 41.1925,
+      "lng": 9.3217,
+      "country": "Italia",
+      "country_code": "IT",
+      "start_date": "2025-10-27",
+      "end_date": "2025-11-02",
+      "category": "past",
+      "expenses": [
+        {
+          "name": "Volo",
+          "total_eur": 196.69,
+          "days": 7
+        },
+        {
+          "name": "Hotel",
+          "total_eur": 213.37,
+          "days": 7
+        },
+        {
+          "name": "Auto",
+          "total_eur": 140.0,
+          "days": 7
+        },
+        {
+          "name": "Kite",
+          "total_eur": null,
+          "days": 7
+        },
+        {
+          "name": "Spese",
+          "total_eur": null,
+          "days": 7
+        },
+        {
+          "name": "Parcheggio",
+          "total_eur": 21.16,
+          "days": 7
+        }
+      ],
+      "expenses_total_eur": 571.22,
+      "notes": [],
+      "pdf_filenames": []
+    },
+    {
+      "id": "capo-verde-10-20-dicembre-2025",
+      "title": "Capo Verde - 10/20 Dicembre 2025",
+      "folder": "Capo Verde - 10 20 Dicembre 2025",
+      "location_name": "Capo Verde",
+      "geocoded_query": "Sal, Cape Verde",
+      "lat": 16.7333,
+      "lng": -22.9333,
+      "country": "Capo Verde",
+      "country_code": "CV",
+      "start_date": "2025-12-10",
+      "end_date": "2025-12-20",
+      "category": "past",
+      "expenses": [
+        {
+          "name": "Volo",
+          "total_eur": 375.48,
+          "days": 11
+        },
+        {
+          "name": "Hotel",
+          "total_eur": 562.0,
+          "days": 11
+        },
+        {
+          "name": "Visto",
+          "total_eur": 36.0,
+          "days": 11
+        },
+        {
+          "name": "Parcheggio",
+          "total_eur": 79.2,
+          "days": 11
+        },
+        {
+          "name": "Taxi",
+          "total_eur": 40.0,
+          "days": 11
+        },
+        {
+          "name": "Sim",
+          "total_eur": 20.0,
+          "days": 11
+        },
+        {
+          "name": "Kite + Sub + Gym",
+          "total_eur": 535.0,
+          "days": 11
+        },
+        {
+          "name": "Cibo",
+          "total_eur": 280.79,
+          "days": 11
+        }
+      ],
+      "expenses_total_eur": 1928.47,
+      "notes": [],
+      "pdf_filenames": []
+    },
+    {
+      "id": "zanzibar-paje-16-30-gennaio-2026",
+      "title": "Zanzibar (Paje) - 16/30 Gennaio 2026",
+      "folder": "Zanzibar (Paje) - 16 30 Gennaio 2026",
+      "location_name": "Zanzibar (Paje)",
+      "geocoded_query": "Paje, Zanzibar, Tanzania",
+      "lat": -6.2667,
+      "lng": 39.5333,
+      "country": "Tanzania",
+      "country_code": "TZ",
+      "start_date": "2026-01-16",
+      "end_date": "2026-01-30",
+      "category": "past",
+      "expenses": [
+        {
+          "name": "Volo",
+          "total_eur": 1220.57,
+          "days": 15
+        },
+        {
+          "name": "Hotel",
+          "total_eur": 618.43,
+          "days": 15
+        },
+        {
+          "name": "Taxi",
+          "total_eur": 95.0,
+          "days": 15
+        },
+        {
+          "name": "Assicurazione",
+          "total_eur": 37.92,
+          "days": 15
+        },
+        {
+          "name": "Visto",
+          "total_eur": 43.73,
+          "days": 15
+        },
+        {
+          "name": "Parcheggio",
+          "total_eur": 98.0,
+          "days": 15
+        },
+        {
+          "name": "Safari Tanzania",
+          "total_eur": 405.0,
+          "days": 15
+        },
+        {
+          "name": "Immersioni",
+          "total_eur": 330.0,
+          "days": 15
+        },
+        {
+          "name": "Kite",
+          "total_eur": 63.0,
+          "days": 15
+        },
+        {
+          "name": "Cibo",
+          "total_eur": 223.31,
+          "days": 15
+        }
+      ],
+      "expenses_total_eur": 3134.96,
+      "notes": [
+        {
+          "heading": "Visto",
+          "body": "Application ID 25QK-F11X-RY15 del 15 Novembre 2025\n\n%20-%2016%2030%20Gennaio%202026/GePG.pdf)\n\n%20-%2016%2030%20Gennaio%202026/Visa_Grant_Notice_-_25QK-F11X-RY15.pdf)"
+        },
+        {
+          "heading": "Assicurazione",
+          "body": "%20-%2016%2030%20Gennaio%202026/663be647-2472-4164-9c8f-1dddbd83cd13.pdf)\n\n%20-%2016%2030%20Gennaio%202026/CONTRACT-ZANELLATI-DAVIDE-20251115154039.pdf)"
+        }
+      ],
+      "pdf_filenames": [
+        "663be647-2472-4164-9c8f-1dddbd83cd13.pdf",
+        "79ab8860-c608-42c9-bc36-03b546734e53.pdf",
+        "CONTRACT-ZANELLATI-DAVIDE-20251115154039.pdf",
+        "GePG.pdf",
+        "Visa_Grant_Notice_-_25QK-F11X-RY15.pdf"
+      ]
+    },
+    {
+      "id": "londra-11-14-febbraio-2026",
+      "title": "Londra - 11/14 Febbraio 2026",
+      "folder": "Londra - 11 14 Febbraio 2026",
+      "location_name": "Londra",
+      "geocoded_query": "London, United Kingdom",
+      "lat": 51.5074,
+      "lng": -0.1278,
+      "country": "Regno Unito",
+      "country_code": "GB",
+      "start_date": "2026-02-11",
+      "end_date": "2026-02-14",
+      "category": "past",
+      "expenses": [
+        {
+          "name": "Volo",
+          "total_eur": 279.24,
+          "days": 4
+        },
+        {
+          "name": "Hotel",
+          "total_eur": 331.0,
+          "days": 4
+        },
+        {
+          "name": "Spese",
+          "total_eur": 313.52,
+          "days": 4
+        },
+        {
+          "name": "Parcheggio",
+          "total_eur": 47.5,
+          "days": 4
+        },
+        {
+          "name": "Visto",
+          "total_eur": 19.08,
+          "days": 4
+        }
+      ],
+      "expenses_total_eur": 990.34,
+      "notes": [],
+      "pdf_filenames": [
+        "Confirmation.pdf"
+      ]
+    },
+    {
+      "id": "tunisi-22-febbraio-01-marzo-2026",
+      "title": "Tunisi - 22 Febbraio/01 Marzo 2026",
+      "folder": "Tunisi - 22 Febbraio 01 Marzo 2026",
+      "location_name": "Tunisi",
+      "geocoded_query": "Tunis, Tunisia",
+      "lat": 36.8065,
+      "lng": 10.1815,
+      "country": "Tunisia",
+      "country_code": "TN",
+      "start_date": "2026-02-22",
+      "end_date": "2026-03-01",
+      "category": "past",
+      "expenses": [
+        {
+          "name": "Volo",
+          "total_eur": 183.0,
+          "days": 8
+        },
+        {
+          "name": "Hotel",
+          "total_eur": 209.2,
+          "days": 8
+        },
+        {
+          "name": "Visto",
+          "total_eur": null,
+          "days": 8
+        },
+        {
+          "name": "Parcheggio",
+          "total_eur": 27.07,
+          "days": 8
+        },
+        {
+          "name": "Auto",
+          "total_eur": 61.74,
+          "days": 8
+        },
+        {
+          "name": "Sim",
+          "total_eur": null,
+          "days": 8
+        },
+        {
+          "name": "Kite + Sub + Gym",
+          "total_eur": null,
+          "days": 8
+        },
+        {
+          "name": "Cibo",
+          "total_eur": null,
+          "days": 8
+        }
+      ],
+      "expenses_total_eur": 481.01,
+      "notes": [],
+      "pdf_filenames": []
+    },
+    {
+      "id": "dakhla-17-24-marzo",
+      "title": "Dakhla - 17/24 Marzo",
+      "folder": "Dakhla - 17 24 Marzo",
+      "location_name": "Dakhla",
+      "geocoded_query": "Dakhla, Western Sahara, Morocco",
+      "lat": 23.6848,
+      "lng": -15.9579,
+      "country": "Marocco",
+      "country_code": "MA",
+      "start_date": "2026-03-17",
+      "end_date": "2026-03-24",
+      "category": "past",
+      "expenses": [
+        {
+          "name": "Volo",
+          "total_eur": 263.93,
+          "days": 8
+        },
+        {
+          "name": "Hotel",
+          "total_eur": 335.0,
+          "days": 8
+        },
+        {
+          "name": "Spese",
+          "total_eur": null,
+          "days": 8
+        }
+      ],
+      "expenses_total_eur": 598.93,
+      "notes": [],
+      "pdf_filenames": [
+        "46318a84-793b-4eb6-99fa-dced289e7bd2.pdf",
+        "Royal_Air_Maroc.pdf"
+      ]
+    },
+    {
+      "id": "giappone",
+      "title": "Giappone",
+      "folder": "Giappone",
+      "location_name": "Giappone",
+      "geocoded_query": "Tokyo, Japan",
+      "lat": 35.6762,
+      "lng": 139.6503,
+      "country": "Giappone",
+      "country_code": "JP",
+      "start_date": null,
+      "end_date": null,
+      "category": "draft",
+      "expenses": [],
+      "expenses_total_eur": 0,
+      "notes": [
+        {
+          "heading": "Cosa Portare",
+          "body": "---"
+        }
+      ],
+      "pdf_filenames": []
+    },
+    {
+      "id": "maldive",
+      "title": "Maldive",
+      "folder": "Maldive",
+      "location_name": "Maldive",
+      "geocoded_query": "Male, Maldives",
+      "lat": 4.1755,
+      "lng": 73.5093,
+      "country": "Maldive",
+      "country_code": "MV",
+      "start_date": null,
+      "end_date": null,
+      "category": "draft",
+      "expenses": [
+        {
+          "name": "Volo",
+          "total_eur": null,
+          "days": null
+        },
+        {
+          "name": "Hotel",
+          "total_eur": null,
+          "days": null
+        },
+        {
+          "name": "Spese",
+          "total_eur": null,
+          "days": null
+        }
+      ],
+      "expenses_total_eur": 0,
+      "notes": [],
+      "pdf_filenames": []
+    },
+    {
+      "id": "varazze",
+      "title": "Varazze",
+      "folder": "Varazze",
+      "location_name": "Varazze",
+      "geocoded_query": "Varazze, Liguria, Italia",
+      "lat": 44.3597,
+      "lng": 8.5778,
+      "country": "Italia",
+      "country_code": "IT",
+      "start_date": null,
+      "end_date": null,
+      "category": "draft",
+      "expenses": [],
+      "expenses_total_eur": 0,
+      "notes": [],
+      "pdf_filenames": []
+    }
+  ],
+  "generated_at": "2026-05-14"
+}
