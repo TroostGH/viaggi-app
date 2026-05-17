@@ -125,9 +125,11 @@ function updateGlobePoints() {
   globe.pointsData(points);
 }
 
-function flyToTrip(t) {
+function flyToTrip(t, duration = 1000) {
   if (!globe || t.lat == null) return;
-  globe.pointOfView({ lat: t.lat, lng: t.lng, altitude: 1.4 }, 1200);
+  // Rotazione del globo + zoom in 1 secondo: altitudine ravvicinata per
+  // creare l'effetto "zoom rapido sul punto geografico"
+  globe.pointOfView({ lat: t.lat, lng: t.lng, altitude: 0.7 }, duration);
 }
 
 /* ============== FILTER & RENDER ============== */
@@ -216,10 +218,39 @@ function renderStats() {
 function openTripModal(id) {
   const t = state.trips.find(x => x.id === id);
   if (!t) return;
-  state.openTripId = id;
-  flyToTrip(t);
-  updateGlobePoints();
 
+  const modalEl = document.getElementById('trip-modal');
+  const modalAlreadyOpen = !modalEl.classList.contains('hidden');
+  const sameTrip = state.openTripId === id;
+
+  // Re-render "in place": solo se il modal è già aperto sullo stesso
+  // viaggio (es. dopo aggiunta spesa/nota). Niente animazione.
+  if (modalAlreadyOpen && sameTrip) {
+    _renderTripModalContent(t);
+    return;
+  }
+
+  // Altrimenti: nascondo il modal (anche se era aperto su un altro
+  // viaggio) e avvio l'animazione del globo. Apertura solo a fine
+  // animazione (1s).
+  modalEl.classList.add('hidden');
+  modalEl.style.display = 'none';
+
+  state.openTripId = id;
+  flyToTrip(t, 1000);          // rotazione + zoom in 1 secondo
+  updateGlobePoints();
+  renderList();                // evidenzia subito la card nella sidepanel
+
+  setTimeout(() => {
+    // se nel frattempo l'utente ha cambiato viaggio, l'ultimo vince
+    if (state.openTripId !== id) return;
+    _renderTripModalContent(t);
+    modalEl.style.display = '';
+    modalEl.classList.remove('hidden');
+  }, 1000);
+}
+
+function _renderTripModalContent(t) {
   const content = document.getElementById('modal-trip-content');
   const dur = durationDays(t.start_date, t.end_date);
 
@@ -329,9 +360,6 @@ function openTripModal(id) {
       </button>
     </div>
   `;
-
-  document.getElementById('trip-modal').classList.remove('hidden');
-  renderList(); // refresh highlighted state
 
   // Wire add-expense
   document.getElementById('btn-add-expense').addEventListener('click', async () => {
