@@ -196,6 +196,20 @@ input, textarea, select { font-family: inherit; }
   .trip-hero h1 { font-size: 22px; }
   .trip-section { padding: 18px 20px; }
   .expenses-table th, .expenses-table td { padding: 8px 6px; font-size: 13px; }
-  .add-expense { grid-template-columns: 1fr 80px 60px auto; }
+  .add-expense {
+    grid-template-columns: 1fr 90px 70px;
+    grid-template-areas:
+      "name  total days"
+      "btn   btn   btn";
+    gap: 8px;
+  }
+  .add-expense > #exp-name   { grid-area: name; }
+  .add-expense > #exp-total  { grid-area: total; }
+  .add-expense > #exp-days   { grid-area: days; }
+  .add-expense > #btn-add-expense {
+    grid-area: btn;
+    padding: 10px 14px;
+    width: 100%;
+  }
   .modal-form { padding: 22px 20px; }
 }
