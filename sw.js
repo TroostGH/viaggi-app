@@ -1,5 +1,5 @@
 /* Service worker — caching aggressivo ma con invalidazione automatica */
-const CACHE = 'viaggi-v14';
+const CACHE = 'viaggi-v15';
 const ASSETS = [
   './',
   './index.html',
