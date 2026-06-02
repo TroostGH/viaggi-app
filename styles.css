@@ -150,6 +150,33 @@ input, textarea, select { font-family: inherit; }
 .btn-add-doc { margin-top: 10px; background: transparent; color: var(--accent); border: 1px dashed rgba(59,130,246,0.4); padding: 10px 14px; border-radius: 8px; font-size: 13px; font-weight: 500; width: 100%; text-align: center; transition: all 0.15s; cursor: pointer; }
 .btn-add-doc:hover { background: rgba(59,130,246,0.08); border-color: var(--accent); }
 
+/* Cose da portare (checklist) */
+.packing-list { display: flex; flex-direction: column; }
+.packing-item { display: flex; align-items: center; gap: 8px; padding: 8px 10px; border-radius: 8px; transition: background 0.15s; }
+.packing-item:hover { background: rgba(255,255,255,0.03); }
+.packing-check { flex: 1; display: flex; align-items: center; gap: 12px; cursor: pointer; min-width: 0; }
+.packing-check input[type="checkbox"] {
+  appearance: none; -webkit-appearance: none; flex-shrink: 0;
+  width: 20px; height: 20px; border: 2px solid var(--text-muted); border-radius: 6px;
+  background: var(--bg-elev); cursor: pointer; position: relative; transition: all 0.15s;
+}
+.packing-check input[type="checkbox"]:hover { border-color: var(--accent); }
+.packing-check input[type="checkbox"]:checked { background: var(--accent); border-color: var(--accent); }
+.packing-check input[type="checkbox"]:checked::after {
+  content: ''; position: absolute; left: 6px; top: 2px;
+  width: 5px; height: 10px; border: solid white; border-width: 0 2px 2px 0; transform: rotate(45deg);
+}
+.packing-text { font-size: 14px; color: var(--text-primary); word-break: break-word; transition: all 0.15s; }
+.packing-item.done .packing-text { text-decoration: line-through; color: var(--text-muted); }
+.packing-item .btn-delete { flex-shrink: 0; }
+
+/* Riga "Aggiungi elemento" */
+.add-packing { display: grid; grid-template-columns: 1fr auto; gap: 8px; margin-top: 12px; }
+.add-packing input { background: var(--bg-elev); border: 1px solid var(--border); padding: 8px 10px; border-radius: 8px; color: var(--text-primary); font-size: 14px; outline: none; }
+.add-packing input:focus { border-color: var(--accent); }
+.add-packing button { background: var(--accent); color: white; border-radius: 8px; padding: 0 16px; font-weight: 600; font-size: 14px; white-space: nowrap; transition: background 0.15s; }
+.add-packing button:hover { background: var(--accent-hover); }
+
 /* ============== FORM ============== */
 .modal-form { padding: 28px 32px; }
 .modal-form h2 { font-size: 22px; font-weight: 700; margin-bottom: 20px; }
@@ -213,4 +240,7 @@ input, textarea, select { font-family: inherit; }
     width: 100%;
   }
   .modal-form { padding: 22px 20px; }
+  .packing-item { padding: 11px 8px; }
+  .packing-check input[type="checkbox"] { width: 22px; height: 22px; }
+  .packing-check input[type="checkbox"]:checked::after { left: 7px; top: 3px; }
 }

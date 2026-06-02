@@ -310,6 +310,48 @@ function _renderTripModalContent(t) {
     <button class="btn-add-doc" id="btn-add-doc-link">+ Aggiungi link documento</button>
   `;
 
+  // Cose da portare: checklist mostrata solo per i viaggi non ancora fatti
+  // (futuri + idee da pianificare). Sui viaggi passati la sezione non compare.
+  const showPacking = t.category !== 'past';
+  let packingHtml = '';
+  if (showPacking) {
+    const packing = t.packing || [];
+    // Ordine di visualizzazione: prima le voci attive, poi quelle spuntate in
+    // fondo. sort è stabile, quindi mantiene l'ordine relativo dentro ai gruppi.
+    const ordered = packing
+      .map((item, idx) => ({ item, idx }))
+      .sort((a, b) => (a.item.done ? 1 : 0) - (b.item.done ? 1 : 0));
+    const remaining = packing.filter(p => !p.done).length;
+
+    const packingItems = ordered.length
+      ? `<div class="packing-list" id="packing-list">
+          ${ordered.map(({ item, idx }) => `
+            <div class="packing-item ${item.done ? 'done' : ''}" data-idx="${idx}">
+              <label class="packing-check">
+                <input type="checkbox" data-action="toggle-packing" data-idx="${idx}" ${item.done ? 'checked' : ''}>
+                <span class="packing-text">${escapeHtml(item.text)}</span>
+              </label>
+              <button class="btn-delete" data-action="del-packing" data-idx="${idx}" title="Elimina">🗑</button>
+            </div>
+          `).join('')}
+        </div>`
+      : `<p class="expenses-empty">Niente in lista. Aggiungi le cose da portare.</p>`;
+
+    packingHtml = `
+      <div class="trip-section">
+        <h3>
+          <span>Cose da portare</span>
+          ${packing.length ? `<span class="section-total">${remaining} da preparare</span>` : ''}
+        </h3>
+        ${packingItems}
+        <div class="add-packing" id="add-packing">
+          <input type="text" placeholder="Aggiungi un elemento (es. Passaporto)" id="packing-input" autocomplete="off">
+          <button id="btn-add-packing">+ Aggiungi</button>
+        </div>
+      </div>
+    `;
+  }
+
   content.innerHTML = `
     <div class="trip-hero">
       <div class="trip-hero-cat cat-${t.category}">
@@ -347,6 +389,8 @@ function _renderTripModalContent(t) {
       <h3><span>Note</span></h3>
       ${notesHtml}
     </div>
+
+    ${packingHtml}
 
     <div class="trip-section">
       <h3><span>Documenti</span></h3>
@@ -468,6 +512,67 @@ function _renderTripModalContent(t) {
       } catch (e) {
         alert('Errore: ' + (e?.message || e));
       }
+    });
+  });
+
+  // ===== Cose da portare =====
+  // Aggiungi una voce alla lista (bottone + invio).
+  async function addPackingItem() {
+    const input = document.getElementById('packing-input');
+    if (!input) return;
+    const text = input.value.trim();
+    if (!text) return;
+    t.packing = t.packing || [];
+    // Inserisci la nuova voce in coda alle voci attive (prima delle spuntate).
+    const firstDone = t.packing.findIndex(p => p.done);
+    const item = { text, done: false };
+    if (firstDone === -1) t.packing.push(item);
+    else t.packing.splice(firstDone, 0, item);
+    try {
+      await db.saveTrip(t);
+      openTripModal(t.id);
+      setTimeout(() => document.getElementById('packing-input')?.focus(), 50);
+    } catch (e) { alert('Errore: ' + (e?.message || e)); }
+  }
+
+  const addPackingBtn = document.getElementById('btn-add-packing');
+  if (addPackingBtn) addPackingBtn.addEventListener('click', addPackingItem);
+  const packingInput = document.getElementById('packing-input');
+  if (packingInput) {
+    packingInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') { e.preventDefault(); addPackingItem(); }
+    });
+  }
+
+  // Spunta/de-spunta una voce: se spuntata va in fondo, se de-spuntata torna
+  // in coda alle voci attive. Resta sempre visibile (barrata se spuntata).
+  content.querySelectorAll('[data-action="toggle-packing"]').forEach(cb => {
+    cb.addEventListener('change', async () => {
+      const idx = parseInt(cb.dataset.idx);
+      if (!t.packing || !t.packing[idx]) return;
+      const item = t.packing[idx];
+      item.done = cb.checked;
+      t.packing.splice(idx, 1);
+      if (item.done) {
+        t.packing.push(item);
+      } else {
+        const firstDone = t.packing.findIndex(p => p.done);
+        if (firstDone === -1) t.packing.push(item);
+        else t.packing.splice(firstDone, 0, item);
+      }
+      try { await db.saveTrip(t); openTripModal(t.id); }
+      catch (e) { alert('Errore: ' + (e?.message || e)); }
+    });
+  });
+
+  // Elimina una voce dalla lista.
+  content.querySelectorAll('[data-action="del-packing"]').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const idx = parseInt(btn.dataset.idx);
+      if (!t.packing || !t.packing[idx]) return;
+      t.packing.splice(idx, 1);
+      try { await db.saveTrip(t); openTripModal(t.id); }
+      catch (e) { alert('Errore: ' + (e?.message || e)); }
     });
   });
 
@@ -594,6 +699,7 @@ async function submitNewTrip(e) {
     expenses: [],
     expenses_total_eur: 0,
     notes: notes ? [{ heading: 'Note', body: notes }] : [],
+    packing: [],
     pdf_filenames: [],
   };
 

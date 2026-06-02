@@ -103,6 +103,7 @@ async function makeFirebaseBackend(config) {
           notes: x.notes || [],
           expenses: x.expenses || [],
           expenses_total_eur: (x.expenses || []).reduce((s, e) => s + (e.total_eur || 0), 0),
+          packing: x.packing || [],
           pdf_filenames: (x.documents || []).map(d => d.file_name),
           documents: x.documents || [],
         }));
@@ -124,6 +125,7 @@ async function makeFirebaseBackend(config) {
         notes: trip.notes || [],
         expenses: trip.expenses || [],
         expenses_total_eur: Math.round(total * 100) / 100,
+        packing: trip.packing || [],
         documents: trip.documents || [],
         updated_at: new Date().toISOString(),
       });
