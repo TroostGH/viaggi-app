@@ -2,9 +2,14 @@
  *  Viaggi di Davide — dashboard with 3D globe
  *  Vanilla JS, ES module. Uses globe.gl from CDN.
  * ============================================================ */
-import { db } from './db.js';
+import { db } from './db.js?v=16';
 
-const TODAY = new Date().toISOString().slice(0, 10);
+// Data di oggi (YYYY-MM-DD) in ora LOCALE, non UTC: serve a decidere se un
+// viaggio è "futuro" o "passato" rispetto al calendario di oggi.
+function todayISO() {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+}
 
 const COLORS = {
   past:   '#22c55e',  // verde
@@ -51,6 +56,9 @@ let state = {
   search: '',
   openTripId: null,
 };
+
+// id del viaggio in modifica (null = sto creando un nuovo viaggio)
+let editingTripId = null;
 
 /* ============== GLOBE ============== */
 let globe = null;
@@ -164,6 +172,12 @@ function renderList() {
       groups[y].push(t);
     }
   }
+
+  // Ordina ogni gruppo per data di inizio, dalla più avanzata alla più vecchia
+  // (in cima il viaggio con la data più lontana). Stesso criterio per i prossimi
+  // viaggi, per ogni anno passato e per le idee.
+  const byStartDesc = (a, b) => (b.start_date || '').localeCompare(a.start_date || '');
+  for (const key of Object.keys(groups)) groups[key].sort(byStartDesc);
 
   const yearKeys = Object.keys(groups).filter(k => /^\d{4}$/.test(k)).sort().reverse();
   const order = ['future', ...yearKeys, 'drafts'];
@@ -602,14 +616,47 @@ function closeTripModal() {
 
 /* ============== NEW TRIP FORM ============== */
 function openNewTripModal() {
+  editingTripId = null;
   document.getElementById('new-trip-form').reset();
   document.getElementById('loc-lat').value = '';
   document.getElementById('loc-lng').value = '';
   document.getElementById('loc-country').value = '';
+  document.getElementById('location-input').dataset.cc = '';
   document.getElementById('location-suggestions').classList.remove('open');
+  document.getElementById('new-trip-heading').textContent = 'Nuovo viaggio';
+  document.getElementById('submit-new-trip').textContent = 'Crea viaggio';
+  document.getElementById('new-trip-notes-field').classList.remove('hidden');
   document.getElementById('new-trip-modal').classList.remove('hidden');
 }
+
+// Apre lo stesso modale del "nuovo viaggio" ma in modalità modifica:
+// precompila nome, luogo e date e, al salvataggio, aggiorna il viaggio esistente.
+function openEditTripModal(id) {
+  const t = state.trips.find(x => x.id === id);
+  if (!t) return;
+  editingTripId = id;
+  const form = document.getElementById('new-trip-form');
+  form.reset();
+  form.title.value = t.title || '';
+  const locInput = document.getElementById('location-input');
+  locInput.value = t.location_name || '';
+  locInput.dataset.cc = t.country_code || '';
+  document.getElementById('loc-lat').value = t.lat ?? '';
+  document.getElementById('loc-lng').value = t.lng ?? '';
+  document.getElementById('loc-country').value = t.country || '';
+  form.start_date.value = t.start_date || '';
+  form.end_date.value = t.end_date || '';
+  document.getElementById('location-suggestions').classList.remove('open');
+  document.getElementById('new-trip-heading').textContent = 'Modifica viaggio';
+  document.getElementById('submit-new-trip').textContent = 'Salva modifiche';
+  // In modifica le note si gestiscono dalla scheda del viaggio: nascondo il campo.
+  document.getElementById('new-trip-notes-field').classList.add('hidden');
+  document.getElementById('new-trip-modal').classList.remove('hidden');
+}
+
 function closeNewTripModal() {
+  editingTripId = null;
+  document.getElementById('new-trip-notes-field').classList.remove('hidden');
   document.getElementById('new-trip-modal').classList.add('hidden');
 }
 
@@ -688,9 +735,34 @@ async function submitNewTrip(e) {
     } catch { alert('Errore di rete nel cercare la posizione.'); return; }
   }
 
-  const today = new Date().toISOString().slice(0, 10);
-  const category = start > today ? 'future' : 'past';
+  const category = start > todayISO() ? 'future' : 'past';
 
+  // ===== Modalità MODIFICA: aggiorno nome, luogo e date del viaggio esistente =====
+  if (editingTripId) {
+    const t = state.trips.find(x => x.id === editingTripId);
+    if (!t) { closeNewTripModal(); return; }
+    t.title = title;
+    t.location_name = location;
+    t.lat = lat; t.lng = lng;
+    t.country = country; t.country_code = country_code;
+    t.start_date = start; t.end_date = end;
+    t.category = category;
+    try {
+      await db.saveTrip(t);
+    } catch (err) {
+      alert('Errore nel salvare le modifiche: ' + (err?.message || err));
+      return;
+    }
+    const savedId = t.id;
+    closeNewTripModal();
+    updateGlobePoints();
+    renderList();
+    renderStats();
+    openTripModal(savedId); // ridisegna la scheda con i dati aggiornati
+    return;
+  }
+
+  // ===== Modalità CREA: nuovo viaggio =====
   const newTrip = {
     id: crypto.randomUUID().replace(/-/g, '').slice(0, 32),
     title, location_name: location, lat, lng, country, country_code,
@@ -754,6 +826,11 @@ async function init() {
 
   // Trip modal close
   document.getElementById('trip-modal-close').addEventListener('click', closeTripModal);
+
+  // Trip modal edit (matita): apre il form precompilato sul viaggio aperto
+  document.getElementById('trip-modal-edit').addEventListener('click', () => {
+    if (state.openTripId) openEditTripModal(state.openTripId);
+  });
   document.getElementById('trip-modal').addEventListener('click', (e) => {
     if (e.target.id === 'trip-modal') closeTripModal();
   });

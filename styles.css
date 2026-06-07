@@ -95,6 +95,9 @@ input, textarea, select { font-family: inherit; }
 .modal-trip, .modal-form { background: var(--bg-card); border-radius: 16px; max-width: 720px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative; border: 1px solid var(--border); box-shadow: var(--shadow); }
 .modal-close { position: absolute; top: 12px; right: 12px; width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.05); font-size: 22px; line-height: 1; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); transition: all 0.15s; z-index: 2; }
 .modal-close:hover { background: rgba(255,255,255,0.12); color: var(--text-primary); }
+.modal-edit { position: absolute; top: 12px; right: 56px; width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; color: var(--text-secondary); transition: all 0.15s; z-index: 2; }
+.modal-edit:hover { background: rgba(59,130,246,0.18); color: #60a5fa; }
+.modal-edit svg { display: block; }
 
 .modal-trip-content { padding: 0; }
 .trip-hero { padding: 32px 32px 24px; background: linear-gradient(135deg, rgba(59,130,246,0.18), rgba(34,197,94,0.08)); border-radius: 16px 16px 0 0; border-bottom: 1px solid var(--border); }

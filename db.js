@@ -26,10 +26,18 @@ function saveLocalOverrides(trips) {
   try { localStorage.setItem(LOCAL_KEY, JSON.stringify(trips)); } catch {}
 }
 
-const today = new Date().toISOString().slice(0, 10);
+// Data di OGGI in ora LOCALE (non UTC): così la categoria cambia esattamente
+// quando il calendario locale raggiunge la data di inizio del viaggio.
+function todayLocalISO() {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+}
+const today = todayLocalISO();
 function recomputeCategory(t) {
   if (!t.start_date) t.category = 'draft';
-  else if (t.start_date >= today) t.category = 'future';
+  // Il giorno stesso della partenza il viaggio diventa "passato" e si sposta
+  // nella sezione dell'anno: restano "future" solo le date STRETTAMENTE future.
+  else if (t.start_date > today) t.category = 'future';
   else t.category = 'past';
   return t;
 }
