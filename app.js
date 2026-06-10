@@ -187,7 +187,12 @@ function renderList() {
     const trips = groups[k];
     if (!trips || !trips.length) continue;
     const label = k === 'future' ? 'Prossimi viaggi' : k === 'drafts' ? 'Idee / da pianificare' : k;
-    html += `<div class="trip-group">${label}</div>`;
+    let groupTotal = '';
+    if (/^\d{4}$/.test(k)) {
+      const tot = trips.reduce((s, t) => s + (t.expenses_total_eur || 0), 0);
+      if (tot > 0) groupTotal = `<span class="trip-group-total">${fmtMoney(tot)}</span>`;
+    }
+    html += `<div class="trip-group">${label}${groupTotal}</div>`;
     for (const t of trips) {
       const highlighted = state.openTripId === t.id ? 'highlighted' : '';
       html += `
