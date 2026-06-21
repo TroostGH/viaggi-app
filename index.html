@@ -12,7 +12,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png?v=4">
 <link rel="icon" type="image/png" sizes="48x48" href="icons/favicon-48.png?v=4">
 <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png?v=4">
-<link rel="stylesheet" href="styles.css?v=17">
+<link rel="stylesheet" href="styles.css?v=18">
 </head>
 <body>
   <!-- ========== HEADER ========== -->
@@ -90,14 +90,11 @@
           <span>Nome del viaggio</span>
           <input type="text" name="title" required placeholder="Es. Tarifa - kite trip">
         </label>
-        <label class="location-field">
-          <span>Luogo</span>
-          <input type="text" name="location" id="location-input" required placeholder="Inizia a scrivere... es. Lisbona">
-          <div class="location-suggestions" id="location-suggestions"></div>
-          <input type="hidden" name="lat" id="loc-lat">
-          <input type="hidden" name="lng" id="loc-lng">
-          <input type="hidden" name="country" id="loc-country">
-        </label>
+        <div class="form-field">
+          <span class="field-label">Località visitate</span>
+          <div class="places-editor" id="form-places-list"></div>
+          <button type="button" class="btn-add-place" id="btn-add-form-place">+ Aggiungi località</button>
+        </div>
         <div class="form-row">
           <label>
             <span>Data inizio</span>
@@ -126,7 +123,7 @@
        Se il file manca, l'app gira in modalità locale (legge da data/trips.json).
        Tag onerror per non bloccare il caricamento se il file non esiste. -->
   <script src="firebase-config.js" onerror="console.info('firebase-config.js non trovato — modalità locale')"></script>
-  <script type="module" src="app.js?v=17"></script>
+  <script type="module" src="app.js?v=18"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(()=>{}));

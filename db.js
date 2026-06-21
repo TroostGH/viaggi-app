@@ -42,15 +42,46 @@ function recomputeCategory(t) {
   return t;
 }
 
+// Garantisce che ogni viaggio abbia un array `places` (località multiple).
+// Per i viaggi vecchi (con un solo luogo nei campi legacy location_name/lat/lng)
+// crea automaticamente una prima località da quei campi, così la mappa continua
+// a funzionare senza migrazioni manuali.
+function ensurePlaces(t) {
+  if (!Array.isArray(t.places) || t.places.length === 0) {
+    if (t.lat != null && t.lng != null) {
+      t.places = [{
+        name: t.location_name || '',
+        lat: t.lat,
+        lng: t.lng,
+        country: t.country || '',
+        country_code: t.country_code || '',
+      }];
+    } else {
+      t.places = [];
+    }
+  }
+  // Mantieni i campi legacy allineati alla prima località (retrocompatibilità:
+  // ricerca, bandiera della card, titolo "Dove" continuano a leggerli).
+  if (t.places.length) {
+    const p = t.places[0];
+    t.location_name = p.name;
+    t.lat = p.lat;
+    t.lng = p.lng;
+    t.country = p.country;
+    t.country_code = p.country_code;
+  }
+  return t;
+}
+
 /* ============== LOCAL backend ============== */
 const localBackend = {
   mode: 'local',
   async loadTrips() {
     const override = loadLocalOverrides();
-    if (override) return override.map(recomputeCategory);
+    if (override) return override.map(recomputeCategory).map(ensurePlaces);
     const res = await fetch('data/trips.json');
     const data = await res.json();
-    return data.trips.map(recomputeCategory);
+    return data.trips.map(recomputeCategory).map(ensurePlaces);
   },
   async saveTrip(trip) {
     let all = loadLocalOverrides();
@@ -98,7 +129,7 @@ async function makeFirebaseBackend(config) {
       const trips = [];
       snap.forEach(d => {
         const x = d.data();
-        trips.push(recomputeCategory({
+        trips.push(ensurePlaces(recomputeCategory({
           id: d.id,
           title: x.title || '',
           location_name: x.location_name || '',
@@ -106,6 +137,7 @@ async function makeFirebaseBackend(config) {
           lng: x.lng ?? null,
           country: x.country || '',
           country_code: x.country_code || '',
+          places: Array.isArray(x.places) ? x.places : null,
           start_date: x.start_date || null,
           end_date: x.end_date || null,
           notes: x.notes || [],
@@ -114,7 +146,7 @@ async function makeFirebaseBackend(config) {
           packing: x.packing || [],
           pdf_filenames: (x.documents || []).map(d => d.file_name),
           documents: x.documents || [],
-        }));
+        })));
       });
       return trips;
     },
@@ -128,6 +160,7 @@ async function makeFirebaseBackend(config) {
         lng: trip.lng ?? null,
         country: trip.country || '',
         country_code: trip.country_code || '',
+        places: Array.isArray(trip.places) ? trip.places : [],
         start_date: trip.start_date || null,
         end_date: trip.end_date || null,
         notes: trip.notes || [],

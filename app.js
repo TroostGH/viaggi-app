@@ -2,7 +2,7 @@
  *  Viaggi di Davide — dashboard with 3D globe
  *  Vanilla JS, ES module. Uses globe.gl from CDN.
  * ============================================================ */
-import { db } from './db.js?v=16';
+import { db } from './db.js?v=17';
 
 // Data di oggi (YYYY-MM-DD) in ora LOCALE, non UTC: serve a decidere se un
 // viaggio è "futuro" o "passato" rispetto al calendario di oggi.
@@ -76,10 +76,11 @@ function initGlobe() {
     .pointColor(d => d.color)
     .pointLabel(d => `
       <div style="font-family: system-ui; font-size: 13px; background: rgba(10,18,32,0.95); padding: 8px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-        <div style="font-weight: 600; color: white;">${flagEmoji(d.country_code)} ${escapeHtml(d.title)}</div>
+        <div style="font-weight: 600; color: white;">${flagEmoji(d.country_code)} ${escapeHtml(d.placeName || d.title)}</div>
+        ${d.placeName && d.placeName !== d.title ? `<div style="color: #cbd5e1; font-size: 12px;">${escapeHtml(d.title)}</div>` : ''}
         <div style="color: #94a3b8; font-size: 12px;">${d.start_date ? fmtRange(d.start_date, d.end_date) : 'data da definire'}</div>
       </div>`)
-    .onPointClick(d => openTripModal(d.id))
+    .onPointClick(d => openTripModal(d.id, d.placeIdx))
     .pointsTransitionDuration(800);
 
   // Atmosphere
@@ -116,28 +117,48 @@ function initGlobe() {
   resize();
 }
 
+// Ritorna le località valide (con coordinate) di un viaggio. Per i viaggi
+// vecchi senza array `places` ricade sul singolo luogo legacy.
+function tripPlaces(t) {
+  const arr = (t.places && t.places.length)
+    ? t.places
+    : (t.lat != null && t.lng != null
+        ? [{ name: t.location_name, lat: t.lat, lng: t.lng, country: t.country, country_code: t.country_code }]
+        : []);
+  return arr.filter(p => p.lat != null && p.lng != null);
+}
+
 function updateGlobePoints() {
-  const visible = filteredTrips().filter(t => t.lat != null && t.lng != null);
-  const points = visible.map(t => ({
-    id: t.id,
-    title: t.title,
-    country_code: t.country_code,
-    start_date: t.start_date,
-    end_date: t.end_date,
-    lat: t.lat,
-    lng: t.lng,
-    color: COLORS[t.category],
-    radius: state.openTripId === t.id ? 0.7 : 0.35,
-    alt: state.openTripId === t.id ? 0.04 : 0.02,
-  }));
+  const visible = filteredTrips();
+  const points = [];
+  for (const t of visible) {
+    const places = tripPlaces(t);
+    const highlighted = state.openTripId === t.id;
+    places.forEach((p, i) => {
+      points.push({
+        id: t.id,
+        placeIdx: i,
+        title: t.title,
+        placeName: p.name,
+        country_code: p.country_code,
+        start_date: t.start_date,
+        end_date: t.end_date,
+        lat: p.lat,
+        lng: p.lng,
+        color: COLORS[t.category],
+        radius: highlighted ? 0.7 : 0.35,
+        alt: highlighted ? 0.04 : 0.02,
+      });
+    });
+  }
   globe.pointsData(points);
 }
 
-function flyToTrip(t, duration = 1000) {
-  if (!globe || t.lat == null) return;
+function flyToPlace(p, duration = 1000) {
+  if (!globe || !p || p.lat == null) return;
   // Rotazione del globo + zoom in 1 secondo: altitudine ravvicinata per
   // creare l'effetto "zoom rapido sul punto geografico"
-  globe.pointOfView({ lat: t.lat, lng: t.lng, altitude: 0.7 }, duration);
+  globe.pointOfView({ lat: p.lat, lng: p.lng, altitude: 0.7 }, duration);
 }
 
 /* ============== FILTER & RENDER ============== */
@@ -151,7 +172,10 @@ function filteredTrips() {
     list = list.filter(t =>
       t.title.toLowerCase().includes(q) ||
       (t.country || '').toLowerCase().includes(q) ||
-      (t.location_name || '').toLowerCase().includes(q)
+      (t.location_name || '').toLowerCase().includes(q) ||
+      (t.places || []).some(p =>
+        (p.name || '').toLowerCase().includes(q) ||
+        (p.country || '').toLowerCase().includes(q))
     );
   }
   return list;
@@ -203,6 +227,7 @@ function renderList() {
             <div class="trip-card-meta">
               <span>${t.country || ''}</span>
               ${t.start_date ? `<span>•</span><span>${fmtRange(t.start_date, t.end_date)}</span>` : '<span>•</span><span>data libera</span>'}
+              ${(t.places && t.places.length > 1) ? `<span>•</span><span>📍 ${t.places.length} località</span>` : ''}
             </div>
             ${t.expenses_total_eur > 0 ? `<div class="trip-card-spent">${fmtMoney(t.expenses_total_eur)} spesi</div>` : ''}
           </div>
@@ -226,7 +251,12 @@ function renderList() {
 
 function renderStats() {
   const trips = state.trips;
-  const countries = new Set(trips.filter(t => t.country).map(t => t.country));
+  // Conta i paesi distinti su TUTTE le località di tutti i viaggi.
+  const countries = new Set();
+  for (const t of trips) {
+    const ps = (t.places && t.places.length) ? t.places : (t.country ? [{ country: t.country }] : []);
+    for (const p of ps) if (p.country) countries.add(p.country);
+  }
   const spent = trips.reduce((s, t) => s + (t.expenses_total_eur || 0), 0);
   document.getElementById('stat-trips').textContent = `${trips.length} viaggi`;
   document.getElementById('stat-countries').textContent = `${countries.size} paesi`;
@@ -234,7 +264,7 @@ function renderStats() {
 }
 
 /* ============== TRIP MODAL ============== */
-function openTripModal(id) {
+function openTripModal(id, placeIdx) {
   const t = state.trips.find(x => x.id === id);
   if (!t) return;
 
@@ -256,7 +286,11 @@ function openTripModal(id) {
   modalEl.style.display = 'none';
 
   state.openTripId = id;
-  flyToTrip(t, 1000);          // rotazione + zoom in 1 secondo
+  // Vola alla località cliccata (se il pin proviene da una località specifica),
+  // altrimenti alla prima località del viaggio.
+  const places = tripPlaces(t);
+  const target = (placeIdx != null && places[placeIdx]) ? places[placeIdx] : places[0];
+  flyToPlace(target, 1000);    // rotazione + zoom in 1 secondo
   updateGlobePoints();
   renderList();                // evidenzia subito la card nella sidepanel
 
@@ -272,6 +306,39 @@ function openTripModal(id) {
 function _renderTripModalContent(t) {
   const content = document.getElementById('modal-trip-content');
   const dur = durationDays(t.start_date, t.end_date);
+
+  // Località del viaggio (array places, con fallback al singolo luogo legacy).
+  const placesArr = (t.places && t.places.length)
+    ? t.places
+    : (t.lat != null
+        ? [{ name: t.location_name || '', lat: t.lat, lng: t.lng, country: t.country || '', country_code: t.country_code || '' }]
+        : []);
+  const placeNames = placesArr.map(p => p.name).filter(Boolean);
+
+  const placesRows = placesArr.map((p, idx) => `
+    <div class="place-item" data-idx="${idx}">
+      <span class="place-item-flag">${flagEmoji(p.country_code)}</span>
+      <span class="place-item-name">${escapeHtml(p.name || '—')}</span>
+      <span class="place-item-country">${escapeHtml(p.country || '')}</span>
+      <button class="btn-delete" data-action="del-place" data-idx="${idx}" title="Rimuovi località">🗑</button>
+    </div>
+  `).join('');
+
+  const placesHtml = `
+    <div class="trip-section">
+      <h3>
+        <span>Località visitate</span>
+        ${placesArr.length ? `<span class="section-total">${placesArr.length} ${placesArr.length === 1 ? 'luogo' : 'luoghi'}</span>` : ''}
+      </h3>
+      <div class="places-list">
+        ${placesRows || '<p class="expenses-empty">Nessuna località. Aggiungine una qui sotto.</p>'}
+      </div>
+      <div class="add-place location-field">
+        <input type="text" id="trip-place-input" placeholder="Aggiungi località (es. New York)" autocomplete="off">
+        <div class="location-suggestions" id="trip-place-suggestions"></div>
+      </div>
+    </div>
+  `;
 
   const expensesRows = (t.expenses || []).map((e, idx) => `
     <tr data-exp-idx="${idx}">
@@ -379,11 +446,13 @@ function _renderTripModalContent(t) {
       </div>
       <h1>${flagEmoji(t.country_code)} ${escapeHtml(t.title)}</h1>
       <div class="trip-hero-meta">
-        ${t.location_name ? `<span><b>Dove:</b> ${escapeHtml(t.location_name)}${t.country ? ', ' + escapeHtml(t.country) : ''}</span>` : ''}
+        ${placeNames.length ? `<span><b>Dove:</b> ${escapeHtml(placeNames.join(', '))}${(placeNames.length === 1 && t.country) ? ', ' + escapeHtml(t.country) : ''}</span>` : ''}
         ${t.start_date ? `<span><b>Quando:</b> ${fmtRange(t.start_date, t.end_date)}</span>` : ''}
         ${dur ? `<span><b>Durata:</b> ${dur} giorni</span>` : ''}
       </div>
     </div>
+
+    ${placesHtml}
 
     <div class="trip-section">
       <h3>
@@ -423,6 +492,44 @@ function _renderTripModalContent(t) {
       </button>
     </div>
   `;
+
+  // ===== Località visitate =====
+  // Rimuovi una località (almeno una deve restare).
+  content.querySelectorAll('[data-action="del-place"]').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const idx = parseInt(btn.dataset.idx);
+      if (!Array.isArray(t.places) || !t.places.length) t.places = placesArr.slice();
+      if (t.places.length <= 1) { alert('Un viaggio deve avere almeno una località.'); return; }
+      if (!confirm('Rimuovere questa località dal viaggio?')) return;
+      t.places.splice(idx, 1);
+      syncPrimaryLocation(t);
+      try {
+        await db.saveTrip(t);
+        openTripModal(t.id);   // re-render in place
+        updateGlobePoints();
+        renderList();
+        renderStats();
+      } catch (e) { alert('Errore: ' + (e?.message || e)); }
+    });
+  });
+
+  // Aggiungi una località: selezionando un suggerimento la salva subito.
+  const tripPlaceInput = document.getElementById('trip-place-input');
+  const tripPlaceBox = document.getElementById('trip-place-suggestions');
+  if (tripPlaceInput && tripPlaceBox) {
+    attachAutocomplete(tripPlaceInput, tripPlaceBox, async (sel) => {
+      if (!Array.isArray(t.places) || !t.places.length) t.places = placesArr.slice();
+      t.places.push({ name: sel.name, lat: sel.lat, lng: sel.lng, country: sel.country, country_code: sel.country_code });
+      syncPrimaryLocation(t);
+      try {
+        await db.saveTrip(t);
+        openTripModal(t.id);   // re-render in place
+        updateGlobePoints();
+        renderList();
+        renderStats();
+      } catch (e) { alert('Errore: ' + (e?.message || e)); }
+    });
+  }
 
   // Wire add-expense
   document.getElementById('btn-add-expense').addEventListener('click', async () => {
@@ -623,11 +730,8 @@ function closeTripModal() {
 function openNewTripModal() {
   editingTripId = null;
   document.getElementById('new-trip-form').reset();
-  document.getElementById('loc-lat').value = '';
-  document.getElementById('loc-lng').value = '';
-  document.getElementById('loc-country').value = '';
-  document.getElementById('location-input').dataset.cc = '';
-  document.getElementById('location-suggestions').classList.remove('open');
+  formPlaces = [emptyPlace()];
+  renderFormPlaces();
   document.getElementById('new-trip-heading').textContent = 'Nuovo viaggio';
   document.getElementById('submit-new-trip').textContent = 'Crea viaggio';
   document.getElementById('new-trip-notes-field').classList.remove('hidden');
@@ -643,15 +747,14 @@ function openEditTripModal(id) {
   const form = document.getElementById('new-trip-form');
   form.reset();
   form.title.value = t.title || '';
-  const locInput = document.getElementById('location-input');
-  locInput.value = t.location_name || '';
-  locInput.dataset.cc = t.country_code || '';
-  document.getElementById('loc-lat').value = t.lat ?? '';
-  document.getElementById('loc-lng').value = t.lng ?? '';
-  document.getElementById('loc-country').value = t.country || '';
+  formPlaces = (t.places && t.places.length)
+    ? t.places.map(p => ({ ...p }))
+    : (t.lat != null
+        ? [{ name: t.location_name || '', lat: t.lat, lng: t.lng, country: t.country || '', country_code: t.country_code || '' }]
+        : [emptyPlace()]);
+  renderFormPlaces();
   form.start_date.value = t.start_date || '';
   form.end_date.value = t.end_date || '';
-  document.getElementById('location-suggestions').classList.remove('open');
   document.getElementById('new-trip-heading').textContent = 'Modifica viaggio';
   document.getElementById('submit-new-trip').textContent = 'Salva modifiche';
   // In modifica le note si gestiscono dalla scheda del viaggio: nascondo il campo.
@@ -665,50 +768,121 @@ function closeNewTripModal() {
   document.getElementById('new-trip-modal').classList.add('hidden');
 }
 
-// Location autocomplete (Nominatim)
-let locDebounce = null;
-function setupLocationAutocomplete() {
-  const input = document.getElementById('location-input');
-  const box = document.getElementById('location-suggestions');
+/* ============== LOCATION AUTOCOMPLETE (Nominatim) ============== */
+// Ricerca geografica condivisa: ritorna una lista di località normalizzate.
+async function geocodeSearch(q) {
+  const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q)}&format=json&limit=5&addressdetails=1`;
+  const res = await fetch(url, { headers: { 'Accept-Language': 'it' } });
+  const data = await res.json();
+  return data.map(r => ({
+    name: r.display_name.split(',').slice(0, 2).join(',').trim(),
+    lat: +r.lat,
+    lng: +r.lon,
+    country: r.address?.country || '',
+    country_code: (r.address?.country_code || '').toUpperCase(),
+  }));
+}
 
+// Collega un autocomplete a una coppia input + box suggerimenti.
+// onSelect(place) viene chiamato quando l'utente sceglie un suggerimento;
+// onType() (opzionale) quando l'utente digita (per invalidare coordinate vecchie).
+function attachAutocomplete(input, box, onSelect, onType) {
+  let deb = null;
   input.addEventListener('input', () => {
+    if (onType) onType();
     const q = input.value.trim();
-    document.getElementById('loc-lat').value = '';
-    document.getElementById('loc-lng').value = '';
-    if (locDebounce) clearTimeout(locDebounce);
-    if (q.length < 3) { box.classList.remove('open'); return; }
-    locDebounce = setTimeout(async () => {
+    if (deb) clearTimeout(deb);
+    if (q.length < 3) { box.classList.remove('open'); box.innerHTML = ''; return; }
+    deb = setTimeout(async () => {
       try {
-        const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q)}&format=json&limit=5&addressdetails=1`;
-        const res = await fetch(url, { headers: { 'Accept-Language': 'it' } });
-        const data = await res.json();
-        box.innerHTML = data.map(r => {
-          const cc = (r.address?.country_code || '').toUpperCase();
-          const name = r.display_name.split(',').slice(0, 2).join(',').trim();
-          return `<div class="location-suggestion" data-lat="${r.lat}" data-lng="${r.lon}" data-cc="${cc}" data-country="${escapeHtml(r.address?.country || '')}" data-name="${escapeHtml(name)}">
-            <span class="sug-flag">${flagEmoji(cc)}</span>
-            <div class="sug-name">${escapeHtml(name)}</div>
-            <div class="sug-country">${escapeHtml(r.address?.country || '')}</div>
-          </div>`;
-        }).join('');
-        box.classList.toggle('open', data.length > 0);
-
+        const results = await geocodeSearch(q);
+        box.innerHTML = results.map(r => `
+          <div class="location-suggestion" data-lat="${r.lat}" data-lng="${r.lng}" data-cc="${r.country_code}" data-country="${escapeHtml(r.country)}" data-name="${escapeHtml(r.name)}">
+            <span class="sug-flag">${flagEmoji(r.country_code)}</span>
+            <div class="sug-name">${escapeHtml(r.name)}</div>
+            <div class="sug-country">${escapeHtml(r.country)}</div>
+          </div>`).join('');
+        box.classList.toggle('open', results.length > 0);
         box.querySelectorAll('.location-suggestion').forEach(item => {
           item.addEventListener('click', () => {
-            input.value = item.dataset.name;
-            document.getElementById('loc-lat').value = item.dataset.lat;
-            document.getElementById('loc-lng').value = item.dataset.lng;
-            document.getElementById('loc-country').value = item.dataset.country;
-            input.dataset.cc = item.dataset.cc;
+            onSelect({
+              name: item.dataset.name,
+              lat: +item.dataset.lat,
+              lng: +item.dataset.lng,
+              country: item.dataset.country,
+              country_code: item.dataset.cc,
+            });
             box.classList.remove('open');
+            box.innerHTML = '';
           });
         });
       } catch (e) { console.warn('geocoding fail', e); }
     }, 400);
   });
+}
 
-  document.addEventListener('click', (e) => {
-    if (!e.target.closest('.location-field')) box.classList.remove('open');
+// Allinea i campi legacy (location_name/lat/lng/country/country_code) alla
+// prima località dell'array places. Da chiamare prima di ogni salvataggio.
+function syncPrimaryLocation(t) {
+  const p = (t.places && t.places[0]) || null;
+  if (p) {
+    t.location_name = p.name;
+    t.lat = p.lat;
+    t.lng = p.lng;
+    t.country = p.country;
+    t.country_code = p.country_code;
+  }
+}
+
+/* ===== Editor località nel form crea/modifica viaggio ===== */
+// Stato delle località mentre si compila il form (può contenere righe vuote
+// o parziali; vengono filtrate al submit).
+let formPlaces = [];
+
+function emptyPlace() { return { name: '', lat: null, lng: null, country: '', country_code: '' }; }
+
+function renderFormPlaces() {
+  const list = document.getElementById('form-places-list');
+  if (!list) return;
+  list.innerHTML = formPlaces.map((p, i) => `
+    <div class="place-row" data-place-idx="${i}">
+      <span class="place-flag">${flagEmoji(p.country_code)}</span>
+      <div class="location-field place-field">
+        <input type="text" class="place-input" data-place-idx="${i}" value="${escapeHtml(p.name || '')}" placeholder="Inizia a scrivere... es. New York" autocomplete="off">
+        <div class="location-suggestions"></div>
+      </div>
+      <button type="button" class="place-remove btn-delete" data-place-idx="${i}" title="Rimuovi località">🗑</button>
+    </div>
+  `).join('');
+
+  list.querySelectorAll('.place-row').forEach(row => {
+    const i = parseInt(row.dataset.placeIdx);
+    const input = row.querySelector('.place-input');
+    const box = row.querySelector('.location-suggestions');
+    const flag = row.querySelector('.place-flag');
+    attachAutocomplete(
+      input, box,
+      (sel) => {
+        formPlaces[i] = { name: sel.name, lat: sel.lat, lng: sel.lng, country: sel.country, country_code: sel.country_code };
+        input.value = sel.name;
+        flag.textContent = flagEmoji(sel.country_code);
+      },
+      () => {
+        // l'utente sta digitando: aggiorna il nome ma invalida le coordinate
+        formPlaces[i].name = input.value;
+        formPlaces[i].lat = null;
+        formPlaces[i].lng = null;
+      }
+    );
+  });
+
+  list.querySelectorAll('.place-remove').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx = parseInt(btn.dataset.placeIdx);
+      formPlaces.splice(idx, 1);
+      if (formPlaces.length === 0) formPlaces.push(emptyPlace());
+      renderFormPlaces();
+    });
   });
 }
 
@@ -716,40 +890,40 @@ async function submitNewTrip(e) {
   e.preventDefault();
   const f = e.target;
   const title = f.title.value.trim();
-  const location = f.location.value.trim();
   const start = f.start_date.value;
   const end = f.end_date.value;
-  const notes = f.notes.value.trim();
-  let lat = parseFloat(f.lat.value), lng = parseFloat(f.lng.value);
-  let country = f.country.value;
-  let country_code = document.getElementById('location-input').dataset.cc || '';
+  const notes = f.notes ? f.notes.value.trim() : '';
 
-  if (isNaN(lat) || isNaN(lng)) {
-    // ultimo tentativo: cerca usando il testo immesso
-    try {
-      const r = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(location)}&format=json&limit=1&addressdetails=1`);
-      const data = await r.json();
-      if (data[0]) {
-        lat = +data[0].lat; lng = +data[0].lon;
-        country = data[0].address?.country || '';
-        country_code = (data[0].address?.country_code || '').toUpperCase();
-      } else {
-        alert('Non sono riuscito a trovare la posizione. Riprova selezionando un suggerimento.');
-        return;
-      }
-    } catch { alert('Errore di rete nel cercare la posizione.'); return; }
+  // Raccogli le località valide. Per le righe con nome ma senza coordinate
+  // (l'utente ha digitato ma non selezionato), tenta un ultimo geocoding.
+  const places = [];
+  for (const p of formPlaces) {
+    if (p && p.lat != null && p.lng != null && !isNaN(p.lat) && !isNaN(p.lng)) {
+      places.push({ name: p.name, lat: p.lat, lng: p.lng, country: p.country, country_code: p.country_code });
+    } else if (p && p.name && p.name.trim()) {
+      try {
+        const res = await geocodeSearch(p.name.trim());
+        if (res[0]) places.push({ name: p.name.trim(), lat: res[0].lat, lng: res[0].lng, country: res[0].country, country_code: res[0].country_code });
+      } catch { /* gestito sotto dal controllo places.length */ }
+    }
+  }
+
+  if (!title) { alert('Inserisci il nome del viaggio'); return; }
+  if (!places.length) {
+    alert('Aggiungi almeno una località selezionando un suggerimento dalla lista.');
+    return;
   }
 
   const category = start > todayISO() ? 'future' : 'past';
+  const primary = places[0];
 
-  // ===== Modalità MODIFICA: aggiorno nome, luogo e date del viaggio esistente =====
+  // ===== Modalità MODIFICA: aggiorno nome, località e date del viaggio esistente =====
   if (editingTripId) {
     const t = state.trips.find(x => x.id === editingTripId);
     if (!t) { closeNewTripModal(); return; }
     t.title = title;
-    t.location_name = location;
-    t.lat = lat; t.lng = lng;
-    t.country = country; t.country_code = country_code;
+    t.places = places;
+    syncPrimaryLocation(t);
     t.start_date = start; t.end_date = end;
     t.category = category;
     try {
@@ -770,7 +944,10 @@ async function submitNewTrip(e) {
   // ===== Modalità CREA: nuovo viaggio =====
   const newTrip = {
     id: crypto.randomUUID().replace(/-/g, '').slice(0, 32),
-    title, location_name: location, lat, lng, country, country_code,
+    title,
+    places,
+    location_name: primary.name, lat: primary.lat, lng: primary.lng,
+    country: primary.country, country_code: primary.country_code,
     start_date: start, end_date: end,
     category,
     expenses: [],
@@ -827,7 +1004,21 @@ async function init() {
   document.getElementById('new-trip-modal-close').addEventListener('click', closeNewTripModal);
   document.getElementById('cancel-new-trip').addEventListener('click', closeNewTripModal);
   document.getElementById('new-trip-form').addEventListener('submit', submitNewTrip);
-  setupLocationAutocomplete();
+
+  // "+ Aggiungi località" nel form: aggiunge una riga vuota e vi mette il focus
+  document.getElementById('btn-add-form-place').addEventListener('click', () => {
+    formPlaces.push(emptyPlace());
+    renderFormPlaces();
+    const inputs = document.querySelectorAll('#form-places-list .place-input');
+    if (inputs.length) inputs[inputs.length - 1].focus();
+  });
+
+  // Chiudi i menu di autocomplete cliccando fuori da un campo località
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.location-field')) {
+      document.querySelectorAll('.location-suggestions.open').forEach(b => b.classList.remove('open'));
+    }
+  });
 
   // Trip modal close
   document.getElementById('trip-modal-close').addEventListener('click', closeTripModal);
